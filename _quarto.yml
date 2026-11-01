@@ -1,0 +1,67 @@
+project:
+  type: website
+  output-dir: docs        # GitHub Pages가 읽는 폴더
+  render:
+    - index.qmd
+    - 01_python_basics.qmd
+    - 02_pandas.qmd
+    - 03_visualization.qmd
+    - 04_statistics.qmd
+    - 05_ai.qmd
+  resources:
+    - images/
+    - data/
+
+website:
+  title: "파이썬 활용 교정정보 분석 실습"
+  description: "법무연수원 교정AI데이터 활용 실무 과정"
+  page-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: 강의 소개
+      - href: 01_python_basics.qmd
+        text: 1. 파이썬 기초
+      - href: 02_pandas.qmd
+        text: 2. 데이터 다루기
+      - href: 03_visualization.qmd
+        text: 3. 시각화
+      - href: 04_statistics.qmd
+        text: 4. 기초통계와 회귀
+      - href: 05_ai.qmd
+        text: 5. AI와 함께 분석하기
+  sidebar:
+    style: floating
+    contents:
+      - index.qmd
+      - section: "기초"
+        contents:
+          - 01_python_basics.qmd
+          - 02_pandas.qmd
+          - 03_visualization.qmd
+      - section: "응용"
+        contents:
+          - 04_statistics.qmd
+          - 05_ai.qmd
+  page-footer:
+    left: "법무연수원 교정AI데이터 활용 실무 과정"
+    right: "made with [Quarto](https://quarto.org)"
+
+lang: ko
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-title: "목차"
+    toc-location: right
+    code-copy: true
+    code-overflow: wrap
+    embed-resources: false
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto

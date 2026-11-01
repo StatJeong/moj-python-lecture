@@ -4,4 +4,11 @@ __pycache__/
 .quarto/
 *.Rproj.user/
 /.luarc.json
-*_files/
+/*_files/
+
+/.quarto/
+**/*.quarto_ipynb
+
+# 실습 코드가 렌더링 중에 만드는 파일
+/합친표.csv
+/죄명별_수용자수.png
