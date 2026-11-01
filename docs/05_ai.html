@@ -253,16 +253,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#데이터-구조를-알려주는-방법" id="toc-데이터-구조를-알려주는-방법" class="nav-link" data-scroll-target="#데이터-구조를-알려주는-방법">5.3 데이터 구조를 알려주는 방법</a></li>
   <li><a href="#요청문-틀" id="toc-요청문-틀" class="nav-link" data-scroll-target="#요청문-틀">5.4 요청문 틀</a></li>
   <li><a href="#받은-코드에-질문하기" id="toc-받은-코드에-질문하기" class="nav-link" data-scroll-target="#받은-코드에-질문하기">5.5 받은 코드에 질문하기</a></li>
-  <li><a href="#ai가-준-코드에서-자주-생기는-문제" id="toc-ai가-준-코드에서-자주-생기는-문제" class="nav-link" data-scroll-target="#ai가-준-코드에서-자주-생기는-문제">5.6 AI가 준 코드에서 자주 생기는 문제</a>
+  <li><a href="#함수로-만들어-달라고-요청하기" id="toc-함수로-만들어-달라고-요청하기" class="nav-link" data-scroll-target="#함수로-만들어-달라고-요청하기">5.6 함수로 만들어 달라고 요청하기</a></li>
+  <li><a href="#ai가-준-코드에서-자주-생기는-문제" id="toc-ai가-준-코드에서-자주-생기는-문제" class="nav-link" data-scroll-target="#ai가-준-코드에서-자주-생기는-문제">5.7 AI가 준 코드에서 자주 생기는 문제</a>
   <ul class="collapse">
   <li><a href="#결측치가-조용히-빠지는-평균" id="toc-결측치가-조용히-빠지는-평균" class="nav-link" data-scroll-target="#결측치가-조용히-빠지는-평균">결측치가 조용히 빠지는 평균</a></li>
   <li><a href="#비율의-평균" id="toc-비율의-평균" class="nav-link" data-scroll-target="#비율의-평균">비율의 평균</a></li>
   <li><a href="#개월을-30일로-바꾸는-날짜-계산" id="toc-개월을-30일로-바꾸는-날짜-계산" class="nav-link" data-scroll-target="#개월을-30일로-바꾸는-날짜-계산">개월을 30일로 바꾸는 날짜 계산</a></li>
   <li><a href="#오류-없이-끝나지만-믿으면-안-되는-회귀-결과" id="toc-오류-없이-끝나지만-믿으면-안-되는-회귀-결과" class="nav-link" data-scroll-target="#오류-없이-끝나지만-믿으면-안-되는-회귀-결과">오류 없이 끝나지만 믿으면 안 되는 회귀 결과</a></li>
   </ul></li>
-  <li><a href="#실습-과제" id="toc-실습-과제" class="nav-link" data-scroll-target="#실습-과제">5.7 실습 과제</a></li>
-  <li><a href="#실제-공개-데이터로-해보기" id="toc-실제-공개-데이터로-해보기" class="nav-link" data-scroll-target="#실제-공개-데이터로-해보기">5.8 실제 공개 데이터로 해보기</a></li>
-  <li><a href="#ai를-쓸-때-지킬-것" id="toc-ai를-쓸-때-지킬-것" class="nav-link" data-scroll-target="#ai를-쓸-때-지킬-것">5.9 AI를 쓸 때 지킬 것</a></li>
+  <li><a href="#실습-과제" id="toc-실습-과제" class="nav-link" data-scroll-target="#실습-과제">5.8 실습 과제</a></li>
+  <li><a href="#실제-공개-데이터로-해보기" id="toc-실제-공개-데이터로-해보기" class="nav-link" data-scroll-target="#실제-공개-데이터로-해보기">5.9 실제 공개 데이터로 해보기</a></li>
+  <li><a href="#ai를-쓸-때-지킬-것" id="toc-ai를-쓸-때-지킬-것" class="nav-link" data-scroll-target="#ai를-쓸-때-지킬-것">5.10 AI를 쓸 때 지킬 것</a></li>
   </ul>
 </nav>
     </div>
@@ -292,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>ChatGPT, Claude 같은 AI는 분석 코드를 빠르게 써 줍니다. 이 장에서는 AI에게 원하는 코드를 받아내는 요청 방법과, 받은 코드가 어떻게 작동하는지 묻고 결과를 검증하는 방법을 연습합니다. AI가 데이터 분석 코드를 쓰고 실행할 때 주로 쓰는 언어가 파이썬이라서, 1~4장에서 익힌 문법이 AI가 준 코드를 읽는 데 그대로 쓰입니다.</p>
 <section id="준비" class="level2">
 <h2 class="anchored" data-anchor-id="준비">5.1 준비</h2>
-<div id="9da0c93c" class="cell" data-execution_count="1">
+<div id="6800d71d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>주소 <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/StatJeong/moj-python-lecture/main/data/"</span></span>
@@ -313,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="데이터-구조를-알려주는-방법" class="level2">
 <h2 class="anchored" data-anchor-id="데이터-구조를-알려주는-방법">5.3 데이터 구조를 알려주는 방법</h2>
 <p>AI에게는 데이터 전체가 아니라 구조만 알려주면 충분합니다.</p>
-<div id="9311f8d8" class="cell" data-execution_count="2">
+<div id="18a4c856" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자.dtypes)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>수용번호        int64
@@ -331,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 dtype: object</code></pre>
 </div>
 </div>
-<div id="46c2202e" class="cell" data-execution_count="3">
+<div id="1cf0f6a5" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자.head(<span class="dv">3</span>).to_string())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   수용번호    시설 성별  나이  죄명  형기_개월         입소일 경비처우급 직업훈련  상담횟수  징벌횟수                  최근상담메모
@@ -376,7 +377,7 @@ dtype: object</code></pre>
 <li>“같은 결과를 다른 방법으로도 낼 수 있나요?”</li>
 </ul>
 <p>예를 들어 위 요청문에 AI가 다음 코드를 줬다고 합시다.</p>
-<div id="58f2d6b6" class="cell" data-execution_count="4">
+<div id="5044ecbb" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>결과 <span class="op">=</span> 수용자.groupby(<span class="st">"경비처우급"</span>)[<span class="st">"징벌횟수"</span>].mean()   <span class="co"># 경비처우급별 징벌횟수 평균</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>결과</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -389,7 +390,7 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </div>
 </div>
 <p>결과 중 하나를 직접 계산해 맞는지 확인합니다. S4인 수용자만 골라 평균을 내 봅니다.</p>
-<div id="aab589d9" class="cell" data-execution_count="5">
+<div id="c78aaa47" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>S4 <span class="op">=</span> 수용자[수용자[<span class="st">"경비처우급"</span>] <span class="op">==</span> <span class="st">"S4"</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(S4[[<span class="st">"수용번호"</span>, <span class="st">"징벌횟수"</span>]])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(S4[<span class="st">"징벌횟수"</span>].mean())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
@@ -401,14 +402,26 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </div>
 </div>
 </section>
+<section id="함수로-만들어-달라고-요청하기" class="level2">
+<h2 class="anchored" data-anchor-id="함수로-만들어-달라고-요청하기">5.6 함수로 만들어 달라고 요청하기</h2>
+<p>한 번 쓰고 끝낼 코드가 아니라면 “함수로 만들어 달라”고 요청합니다. 함수로 받아 두면 시설, 기준일, 기간처럼 바뀌는 값만 넣어 같은 분석을 반복할 수 있습니다(2.12절). 요청할 때는 입력, 출력, 사용 예를 적어 주면 원하는 모양의 함수를 받기 쉽습니다.</p>
+<pre class="text"><code>[원하는 결과]
+아래 조건의 파이썬 함수를 만들어 주세요.
+- 함수 이름: 시설별출소예정
+- 입력: 수용자 데이터프레임, 시설 이름, 기준일(기본값 "2026-12-01"), 개월 수(기본값 6)
+- 출력: 그 시설에서 기준일부터 개월 수 안에 출소 예정인 수용자의 수용번호와 출소예정일 표
+- 출소예정일은 입소일에 형기_개월을 달력 기준으로 더해서 구합니다.
+- 사용 예: 시설별출소예정(수용자, "A교도소")</code></pre>
+<p>함수를 받으면 결과를 이미 아는 경우로 먼저 확인합니다. 예를 들어 <code>시설별출소예정(수용자, "A교도소")</code>는 1001, 1006, 1009번 3명이 나와야 합니다. 함수가 맞게 작동하는 것을 확인한 뒤에 다른 시설이나 다른 기준일에 씁니다.</p>
+</section>
 <section id="ai가-준-코드에서-자주-생기는-문제" class="level2">
-<h2 class="anchored" data-anchor-id="ai가-준-코드에서-자주-생기는-문제">5.6 AI가 준 코드에서 자주 생기는 문제</h2>
+<h2 class="anchored" data-anchor-id="ai가-준-코드에서-자주-생기는-문제">5.7 AI가 준 코드에서 자주 생기는 문제</h2>
 <p>아래 예들은 모두 오류 없이 실행됩니다. 그래서 더 놓치기 쉽습니다.</p>
 <section id="결측치가-조용히-빠지는-평균" class="level3">
 <h3 class="anchored" data-anchor-id="결측치가-조용히-빠지는-평균">결측치가 조용히 빠지는 평균</h3>
-<div id="bf8ecf5b" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자[<span class="st">"상담횟수"</span>].mean())                    <span class="co"># 값이 있는 9명으로 나눔</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자[<span class="st">"상담횟수"</span>].<span class="bu">sum</span>() <span class="op">/</span> <span class="bu">len</span>(수용자))       <span class="co"># 10명으로 나눔</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="303bb54e" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자[<span class="st">"상담횟수"</span>].mean())                    <span class="co"># 값이 있는 9명으로 나눔</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자[<span class="st">"상담횟수"</span>].<span class="bu">sum</span>() <span class="op">/</span> <span class="bu">len</span>(수용자))       <span class="co"># 10명으로 나눔</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>4.222222222222222
 3.8</code></pre>
@@ -418,10 +431,10 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </section>
 <section id="비율의-평균" class="level3">
 <h3 class="anchored" data-anchor-id="비율의-평균">비율의 평균</h3>
-<div id="d7625157" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>시설현황[<span class="st">"수용률"</span>] <span class="op">=</span> 시설현황[<span class="st">"현원"</span>] <span class="op">/</span> 시설현황[<span class="st">"정원"</span>] <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(시설현황[<span class="st">"수용률"</span>].mean())                                <span class="co"># 시설별 수용률의 단순 평균</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(시설현황[<span class="st">"현원"</span>].<span class="bu">sum</span>() <span class="op">/</span> 시설현황[<span class="st">"정원"</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>)    <span class="co"># 전체 현원 / 전체 정원</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e2f08ff7" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>시설현황[<span class="st">"수용률"</span>] <span class="op">=</span> 시설현황[<span class="st">"현원"</span>] <span class="op">/</span> 시설현황[<span class="st">"정원"</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(시설현황[<span class="st">"수용률"</span>].mean())                                <span class="co"># 시설별 수용률의 단순 평균</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(시설현황[<span class="st">"현원"</span>].<span class="bu">sum</span>() <span class="op">/</span> 시설현황[<span class="st">"정원"</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>)    <span class="co"># 전체 현원 / 전체 정원</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>124.22916666666667
 122.33333333333334</code></pre>
@@ -431,20 +444,20 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </section>
 <section id="개월을-30일로-바꾸는-날짜-계산" class="level3">
 <h3 class="anchored" data-anchor-id="개월을-30일로-바꾸는-날짜-계산">개월을 30일로 바꾸는 날짜 계산</h3>
-<div id="fdc1b15b" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"입소일"</span>] <span class="op">=</span> pd.to_datetime(수용자[<span class="st">"입소일"</span>])</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 형기 1개월을 30일로 바꿔 더하는 방법</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"출소_30일근사"</span>] <span class="op">=</span> 수용자[<span class="st">"입소일"</span>] <span class="op">+</span> pd.to_timedelta(수용자[<span class="st">"형기_개월"</span>] <span class="op">*</span> <span class="dv">30</span>, unit<span class="op">=</span><span class="st">"D"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 달력 기준으로 개월을 더하는 방법</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>달력기준 <span class="op">=</span> []</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 입소일, 형기 <span class="kw">in</span> <span class="bu">zip</span>(수용자[<span class="st">"입소일"</span>], 수용자[<span class="st">"형기_개월"</span>]):</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    달력기준.append(입소일 <span class="op">+</span> pd.DateOffset(months<span class="op">=</span><span class="bu">int</span>(형기)))</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"출소_달력기준"</span>] <span class="op">=</span> 달력기준</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"차이_일"</span>] <span class="op">=</span> (수용자[<span class="st">"출소_달력기준"</span>] <span class="op">-</span> 수용자[<span class="st">"출소_30일근사"</span>]).dt.days</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>수용자[[<span class="st">"수용번호"</span>, <span class="st">"형기_개월"</span>, <span class="st">"출소_30일근사"</span>, <span class="st">"출소_달력기준"</span>, <span class="st">"차이_일"</span>]]</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="a93f4ade" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"입소일"</span>] <span class="op">=</span> pd.to_datetime(수용자[<span class="st">"입소일"</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 형기 1개월을 30일로 바꿔 더하는 방법</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"출소_30일근사"</span>] <span class="op">=</span> 수용자[<span class="st">"입소일"</span>] <span class="op">+</span> pd.to_timedelta(수용자[<span class="st">"형기_개월"</span>] <span class="op">*</span> <span class="dv">30</span>, unit<span class="op">=</span><span class="st">"D"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 달력 기준으로 개월을 더하는 방법</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>달력기준 <span class="op">=</span> []</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 입소일, 형기 <span class="kw">in</span> <span class="bu">zip</span>(수용자[<span class="st">"입소일"</span>], 수용자[<span class="st">"형기_개월"</span>]):</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    달력기준.append(입소일 <span class="op">+</span> pd.DateOffset(months<span class="op">=</span><span class="bu">int</span>(형기)))</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"출소_달력기준"</span>] <span class="op">=</span> 달력기준</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"차이_일"</span>] <span class="op">=</span> (수용자[<span class="st">"출소_달력기준"</span>] <span class="op">-</span> 수용자[<span class="st">"출소_30일근사"</span>]).dt.days</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>수용자[[<span class="st">"수용번호"</span>, <span class="st">"형기_개월"</span>, <span class="st">"출소_30일근사"</span>, <span class="st">"출소_달력기준"</span>, <span class="st">"차이_일"</span>]]</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -555,25 +568,25 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </section>
 </section>
 <section id="실습-과제" class="level2">
-<h2 class="anchored" data-anchor-id="실습-과제">5.7 실습 과제</h2>
+<h2 class="anchored" data-anchor-id="실습-과제">5.8 실습 과제</h2>
 <p>아래 과제를 AI에게 요청해 해결해 보세요. 받은 코드는 5.5절의 세 단계로 확인합니다. 정답 보기에는 확인용 코드가 있습니다.</p>
 <ol type="1">
 <li>기준일 2026년 12월 1일로부터 6개월 이내(2027년 6월 1일 이전)에 출소 예정인 수용자를 찾으세요.</li>
 </ol>
-<div id="992dc986" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5433de09" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="de241e6d" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>출소예정일 <span class="op">=</span> []</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 입소일, 형기 <span class="kw">in</span> <span class="bu">zip</span>(수용자[<span class="st">"입소일"</span>], 수용자[<span class="st">"형기_개월"</span>]):</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    출소예정일.append(입소일 <span class="op">+</span> pd.DateOffset(months<span class="op">=</span><span class="bu">int</span>(형기)))</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"출소예정일"</span>] <span class="op">=</span> 출소예정일</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>수용자[수용자[<span class="st">"출소예정일"</span>] <span class="op">&lt;</span> pd.Timestamp(<span class="st">"2027-06-01"</span>)][[<span class="st">"수용번호"</span>, <span class="st">"출소예정일"</span>]]</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d7290179" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>출소예정일 <span class="op">=</span> []</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 입소일, 형기 <span class="kw">in</span> <span class="bu">zip</span>(수용자[<span class="st">"입소일"</span>], 수용자[<span class="st">"형기_개월"</span>]):</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    출소예정일.append(입소일 <span class="op">+</span> pd.DateOffset(months<span class="op">=</span><span class="bu">int</span>(형기)))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"출소예정일"</span>] <span class="op">=</span> 출소예정일</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>수용자[수용자[<span class="st">"출소예정일"</span>] <span class="op">&lt;</span> pd.Timestamp(<span class="st">"2027-06-01"</span>)][[<span class="st">"수용번호"</span>, <span class="st">"출소예정일"</span>]]</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -618,20 +631,20 @@ Name: 징벌횟수, dtype: float64</code></pre>
 <ol start="2" type="1">
 <li>시설별로 인원, 평균 형기(개월), 징벌을 한 번 이상 받은 사람의 비율을 한 표로 만드세요.</li>
 </ol>
-<div id="3674b182" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="562dcde4" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="2ddca88c" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"징벌여부"</span>] <span class="op">=</span> (수용자[<span class="st">"징벌횟수"</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>수용자.groupby(<span class="st">"시설"</span>).agg(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    인원<span class="op">=</span>(<span class="st">"수용번호"</span>, <span class="st">"count"</span>),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    평균형기<span class="op">=</span>(<span class="st">"형기_개월"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    징벌비율<span class="op">=</span>(<span class="st">"징벌여부"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>).<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d1300e3f" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"징벌여부"</span>] <span class="op">=</span> (수용자[<span class="st">"징벌횟수"</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>수용자.groupby(<span class="st">"시설"</span>).agg(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    인원<span class="op">=</span>(<span class="st">"수용번호"</span>, <span class="st">"count"</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    평균형기<span class="op">=</span>(<span class="st">"형기_개월"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    징벌비율<span class="op">=</span>(<span class="st">"징벌여부"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>).<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -680,9 +693,9 @@ Name: 징벌횟수, dtype: float64</code></pre>
 <ol start="3" type="1">
 <li>최근상담메모를 “생활”, “심리”, “진로” 중 하나로 분류하게 해 보세요. 아래 코드로 메모를 출력한 뒤, 그 내용을 AI에게 주고 분류를 요청합니다.</li>
 </ol>
-<div id="09f5b2f8" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 번호, 메모 <span class="kw">in</span> <span class="bu">zip</span>(수용자[<span class="st">"수용번호"</span>], 수용자[<span class="st">"최근상담메모"</span>]):</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(번호, 메모)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="22ad97d5" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 번호, 메모 <span class="kw">in</span> <span class="bu">zip</span>(수용자[<span class="st">"수용번호"</span>], 수용자[<span class="st">"최근상담메모"</span>]):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(번호, 메모)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1001 수면이 부족하고 예민해졌다고 말함
 1002 출소 후 회계 관련 자격증 취득을 희망함
@@ -698,15 +711,97 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </div>
 <p>이 메모는 강의용 가상 문장입니다. 실제 상담기록은 외부 AI에 입력하지 않습니다.</p>
 <ol start="4" type="1">
-<li>3.5절의 시설별 수용률 표를 AI에게 주고 세 문장짜리 보고서 문단을 써 달라고 요청하세요. 받은 문장에 나온 숫자가 표의 숫자와 같은지 하나씩 확인합니다.</li>
+<li><p>3.5절의 시설별 수용률 표를 AI에게 주고 세 문장짜리 보고서 문단을 써 달라고 요청하세요. 받은 문장에 나온 숫자가 표의 숫자와 같은지 하나씩 확인합니다.</p></li>
+<li><p>5.6절의 요청문으로 <code>시설별출소예정</code> 함수를 받아 실행하세요. A교도소에서 1001, 1006, 1009번 3명이 나오는지 확인한 뒤, B교도소와 C교도소에도 적용해 보세요.</p></li>
 </ol>
+<div id="d533b44e" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 함수를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<details>
+<summary>
+정답 보기
+</summary>
+<div id="ff7d8bf6" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> 시설별출소예정(표, 시설명, 기준일<span class="op">=</span><span class="st">"2026-12-01"</span>, 개월<span class="op">=</span><span class="dv">6</span>):</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    출소예정일 <span class="op">=</span> []</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> 입소일, 형기 <span class="kw">in</span> <span class="bu">zip</span>(pd.to_datetime(표[<span class="st">"입소일"</span>]), 표[<span class="st">"형기_개월"</span>]):</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        출소예정일.append(입소일 <span class="op">+</span> pd.DateOffset(months<span class="op">=</span><span class="bu">int</span>(형기)))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    결과 <span class="op">=</span> 표.assign(출소예정일<span class="op">=</span>출소예정일)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    시작 <span class="op">=</span> pd.Timestamp(기준일)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    끝 <span class="op">=</span> 시작 <span class="op">+</span> pd.DateOffset(months<span class="op">=</span>개월)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    조건 <span class="op">=</span> (결과[<span class="st">"시설"</span>] <span class="op">==</span> 시설명) <span class="op">&amp;</span> (결과[<span class="st">"출소예정일"</span>] <span class="op">&gt;=</span> 시작) <span class="op">&amp;</span> (결과[<span class="st">"출소예정일"</span>] <span class="op">&lt;</span> 끝)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> 결과[조건][[<span class="st">"수용번호"</span>, <span class="st">"출소예정일"</span>]]</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>시설별출소예정(수용자, <span class="st">"A교도소"</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">수용번호</th>
+<th data-quarto-table-cell-role="th">출소예정일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1001</td>
+<td>2027-03-12</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>1006</td>
+<td>2027-04-10</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>1009</td>
+<td>2027-02-18</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="a155f756" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>시설별출소예정(수용자, <span class="st">"C교도소"</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">수용번호</th>
+<th data-quarto-table-cell-role="th">출소예정일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>1007</td>
+<td>2027-02-03</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</details>
 </section>
 <section id="실제-공개-데이터로-해보기" class="level2">
-<h2 class="anchored" data-anchor-id="실제-공개-데이터로-해보기">5.8 실제 공개 데이터로 해보기</h2>
+<h2 class="anchored" data-anchor-id="실제-공개-데이터로-해보기">5.9 실제 공개 데이터로 해보기</h2>
 <p>(준비 중) 교정통계연보 등 공개 통계를 내려받아 같은 순서로 분석합니다.</p>
 </section>
 <section id="ai를-쓸-때-지킬-것" class="level2">
-<h2 class="anchored" data-anchor-id="ai를-쓸-때-지킬-것">5.9 AI를 쓸 때 지킬 것</h2>
+<h2 class="anchored" data-anchor-id="ai를-쓸-때-지킬-것">5.10 AI를 쓸 때 지킬 것</h2>
 <ul>
 <li>실제 수용자 정보, 상담 내용 등 민감정보는 외부 AI 서비스에 입력하지 않습니다.</li>
 <li>열 이름, 자료형, 가상 예시만 알려주고 받은 코드는 내부 환경에서 실행합니다.</li>
