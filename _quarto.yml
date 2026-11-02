@@ -8,6 +8,7 @@ project:
     - 03_visualization.qmd
     - 04_statistics.qmd
     - 05_ai.qmd
+    - 06_yearbook.qmd
   resources:
     - images/
     - data/
@@ -30,6 +31,8 @@ website:
         text: 4. 기초통계와 회귀
       - href: 05_ai.qmd
         text: 5. AI와 함께 분석하기
+      - href: 06_yearbook.qmd
+        text: 6. 교정통계연보 실습
   sidebar:
     style: floating
     contents:
@@ -43,6 +46,7 @@ website:
         contents:
           - 04_statistics.qmd
           - 05_ai.qmd
+          - 06_yearbook.qmd
   page-footer:
     left: "법무연수원 교정AI데이터 활용 실무 과정"
     right: "made with [Quarto](https://quarto.org)"

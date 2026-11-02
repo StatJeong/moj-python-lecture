@@ -15,7 +15,7 @@ subtitle: "법무연수원 교정AI데이터 활용 실무 과정 (기초, 응�
 이 강의는 두 부분으로 나뉩니다.
 
 - 기초: 파이썬 문법, 표 형태 데이터 다루기, 그래프 그리기
-- 응용: 기초통계와 회귀분석, AI에게 분석 코드를 받아 검증하며 쓰는 방법
+- 응용: 기초통계와 회귀분석, AI에게 분석 코드를 받아 검증하며 쓰는 방법, 『2026 교정통계연보』 실제 통계 분석
 
 ## 시간표
 
@@ -28,7 +28,7 @@ subtitle: "법무연수원 교정AI데이터 활용 실무 과정 (기초, 응�
 | 14:40 ~ 14:50 | 휴식 |
 | 14:50 ~ 15:30 | 4장 기초통계와 회귀 |
 | 15:30 ~ 15:40 | 휴식 |
-| 15:40 ~ 17:20 | 5장 AI와 함께 분석하기 |
+| 15:40 ~ 17:20 | 5장 AI와 함께 분석하기, 6장 교정통계연보 실습 |
 | 17:20 ~ 17:30 | 정리, 질의응답 |
 
 ## 실습 노트북 (Colab)
@@ -42,6 +42,7 @@ subtitle: "법무연수원 교정AI데이터 활용 실무 과정 (기초, 응�
 | 3. 시각화 | [Colab에서 열기](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/03_visualization.ipynb) |
 | 4. 기초통계와 회귀 | [Colab에서 열기](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/04_statistics.ipynb) |
 | 5. AI와 함께 분석하기 | [Colab에서 열기](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/05_ai.ipynb) |
+| 6. 교정통계연보 실습 | [Colab에서 열기](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/06_yearbook.ipynb) |
 
 Colab에서 처음 열면 다음 순서로 진행합니다.
 
@@ -52,7 +53,7 @@ Colab에서 처음 열면 다음 순서로 진행합니다.
 
 ## 실습 데이터
 
-실습에는 강의용으로 만든 가상 데이터 두 개를 씁니다. 실제 수용자, 시설과 관계없는 값입니다.
+1~5장에서는 강의용으로 만든 가상 데이터 두 개를 씁니다. 실제 수용자, 시설과 관계없는 값입니다. 6장에서는 『2026 교정통계연보』(법무부 교정본부)의 표를 옮긴 실제 공개 통계를 씁니다.
 
 - `inmates.csv` (수용자 데이터): 수용자 10명, 12개 열
 - `facilities.csv` (시설현황 데이터): 교정시설 4곳의 정원과 현원

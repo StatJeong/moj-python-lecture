@@ -19,7 +19,7 @@ REPO = "StatJeong/moj-python-lecture"
 RAW = f"https://raw.githubusercontent.com/{REPO}/main/"
 SITE = "https://statjeong.github.io/moj-python-lecture/"
 ROOT = Path(__file__).resolve().parent.parent
-CHAPTERS = ["01_python_basics", "02_pandas", "03_visualization", "04_statistics", "05_ai"]
+CHAPTERS = ["01_python_basics", "02_pandas", "03_visualization", "04_statistics", "05_ai", "06_yearbook"]
 
 
 def parse(text):
@@ -70,6 +70,7 @@ def parse(text):
 
 def fix_markdown(src, name):
     src = re.sub(r"\]\((images/[^)]+)\)", lambda m: f"]({RAW}{m.group(1)})", src)
+    src = re.sub(r"\]\(([0-9]{2}_[a-z_]+)\.qmd\)", lambda m: f"]({SITE}{m.group(1)}.html)", src)
     src = re.sub(r"^\[Colab에서 실습 노트북 열기\]\(.*\)$",
                  f"웹 강의자료: [{SITE}{name}.html]({SITE}{name}.html)", src, flags=re.M)
     return src.strip("\n")
