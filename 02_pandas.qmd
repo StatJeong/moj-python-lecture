@@ -16,6 +16,14 @@ import pandas as pd
 수용자
 ```
 
+::: {.callout-warning title="GitHub 파일은 raw 주소로 읽습니다"}
+GitHub 화면 주소(`https://github.com/.../blob/...`)를 그대로 넣으면 웹페이지를 읽으려다 `ParserError: Error tokenizing data`가 납니다. 파일 화면의 `Raw` 버튼을 누르면 나오는 `https://raw.githubusercontent.com/...` 주소를 씁니다.
+:::
+
+::: {.callout-note title="import 칸을 먼저 실행하기"}
+`NameError: name 'pd' is not defined`가 나면 `import pandas as pd`가 있는 칸을 실행하지 않은 것입니다.
+:::
+
 - `import pandas as pd`는 pandas를 불러와 `pd`라는 짧은 이름으로 쓰겠다는 뜻입니다.
 - `pd.read_csv()`는 CSV 파일을 읽어 표(DataFrame)로 만듭니다.
 
@@ -25,6 +33,18 @@ import pandas as pd
 표 = pd.read_csv("내파일.csv", encoding="cp949")
 표 = pd.read_excel("내파일.xlsx")
 ```
+
+::: {.callout-warning title="한글이 깨지거나 UnicodeDecodeError가 날 때"}
+공공기관이나 엑셀에서 저장한 CSV는 `cp949`(또는 `euc-kr`) 인코딩인 경우가 많습니다. 그냥 읽으면 `UnicodeDecodeError: 'utf-8' codec can't decode byte ...`가 납니다. `encoding="cp949"`를 붙여 다시 읽습니다.
+:::
+
+::: {.callout-warning title="Colab에 올린 파일은 연결이 끊기면 사라집니다"}
+왼쪽 폴더 아이콘으로 올린 파일은 임시 공간에 저장됩니다. 연결이 끊기거나 세션을 다시 시작하면 지워지므로 원본은 내 컴퓨터에 두고, 결과 파일은 바로 내려받습니다.
+:::
+
+::: {.callout-important title="실제 업무 데이터는 Colab에 올리지 않기"}
+Colab은 구글 서버에서 실행됩니다. 실제 수용자 정보가 담긴 파일은 Colab에 올리지 않고, 기관의 내부 분석 환경과 보안 지침을 따릅니다.
+:::
 
 ## 2.2 데이터 첫 확인
 
@@ -48,6 +68,10 @@ import pandas as pd
 
 `int64`는 정수, `float64`는 실수, `object` 또는 `str`은 문자열입니다. `상담횟수`가 정수가 아니라 실수(`float64`)로 읽힌 이유는 비어 있는 칸이 있기 때문입니다. 이 내용은 2.9절에서 다룹니다.
 
+::: {.callout-warning title="숫자가 문자로 읽히는 경우"}
+`"1,234"`처럼 천 단위 쉼표가 들어간 숫자는 문자(`object`)로 읽혀 계산이 되지 않습니다. 읽을 때 `pd.read_csv(..., thousands=",")`를 붙이면 숫자로 읽힙니다. 데이터를 읽은 뒤에는 `dtypes`로 숫자 열이 숫자로 읽혔는지 먼저 확인합니다.
+:::
+
 ## 2.3 열 고르기
 
 열 하나는 대괄호에 열 이름을 넣어 꺼냅니다. 여러 열은 열 이름 리스트를 넣습니다(대괄호가 두 겹).
@@ -59,6 +83,18 @@ import pandas as pd
 ```{python}
 수용자[["수용번호", "죄명", "나이"]]
 ```
+
+::: {.callout-warning title="열 이름은 띄어쓰기까지 정확하게"}
+없는 열 이름을 쓰면 `KeyError: '나 이'`처럼 오류가 납니다. 열 이름 앞뒤에 보이지 않는 공백이 붙은 파일도 많습니다. `수용자.columns`로 정확한 이름을 확인하고, 필요하면 `수용자.columns = 수용자.columns.str.strip()`으로 앞뒤 공백을 지웁니다.
+:::
+
+::: {.callout-note title="대괄호 한 겹과 두 겹"}
+`수용자["나이"]`는 열 하나(Series), `수용자[["나이"]]`는 열 하나짜리 표(DataFrame)입니다. 여러 열을 고를 때는 반드시 두 겹입니다.
+:::
+
+::: {.callout-tip title="수용자.나이 처럼 점으로 꺼내기"}
+`수용자.나이`도 동작하지만, 열 이름에 띄어쓰기가 있거나 `count`처럼 pandas 기능 이름과 같으면 원하는 열이 나오지 않습니다(`수용자.count`는 열이 아니라 기능). 대괄호 방식을 기본으로 씁니다.
+:::
 
 ## 2.4 행 고르기 (필터)
 
@@ -80,11 +116,30 @@ import pandas as pd
 수용자[(수용자["죄명"] == "사기") & (수용자["나이"] >= 40)]
 ```
 
+::: {.callout-warning title="and 대신 &, 조건마다 괄호"}
+```python
+수용자[(수용자["나이"] < 30) and (수용자["징벌횟수"] > 0)]
+수용자[수용자["나이"] < 30 & 수용자["징벌횟수"] > 0]
+```
+
+두 줄 모두 `ValueError: The truth value of a Series is ambiguous...`가 납니다. 첫 줄은 `and`를 써서, 둘째 줄은 괄호가 없어서입니다. `&`는 `<`보다 먼저 계산되므로 조건마다 괄호가 필요합니다.
+:::
+
 여러 값 중 하나에 해당하는지는 `isin()`으로 확인합니다.
 
 ```{python}
 수용자[수용자["죄명"].isin(["폭력", "마약"])]
 ```
+
+::: {.callout-tip title="일부 글자가 들어 있는 행 찾기"}
+`==`는 값이 정확히 같아야 합니다. `"사기 "`처럼 공백이 하나 붙어도 다른 값입니다. 일부 글자가 들어 있는지 확인할 때는 `.str.contains()`를 씁니다.
+
+```python
+수용자[수용자["최근상담메모"].str.contains("출소", na=False)]
+```
+
+`na=False`는 빈 메모를 거짓으로 처리하라는 뜻입니다. 빠뜨리면 pandas 버전에 따라 `ValueError: Cannot mask with non-boolean array containing NA / NaN values`가 납니다.
+:::
 
 ## 2.5 정렬
 
@@ -93,6 +148,10 @@ import pandas as pd
 ```
 
 `ascending=False`는 큰 값부터(내림차순) 정렬한다는 뜻입니다.
+
+::: {.callout-warning title="결과를 다시 저장해야 바뀝니다"}
+`수용자.sort_values("나이")`는 정렬된 새 표를 보여줄 뿐, `수용자` 자체는 바뀌지 않습니다. 정렬된 표를 계속 쓰려면 `수용자 = 수용자.sort_values("나이")`처럼 다시 저장합니다. `fillna()`, `dropna()`, `rename()`도 같습니다.
+:::
 
 ## 2.6 새 열 만들기
 
@@ -106,6 +165,19 @@ import pandas as pd
 
 `(수용자["징벌횟수"] > 0)`은 `True` / `False`이고, `.astype(int)`로 1 / 0으로 바꿨습니다.
 
+::: {.callout-warning title="골라낸 표에 새 열을 만들 때 나오는 경고"}
+```python
+젊은층 = 수용자[수용자["나이"] < 30]
+젊은층["표시"] = 1    # SettingWithCopyWarning
+```
+
+pandas 버전에 따라 `SettingWithCopyWarning` 경고가 나옵니다. 원래 표(`수용자`)가 함께 바뀌는지 헷갈릴 수 있다는 경고입니다. 골라낸 표를 따로 고쳐 쓸 때는 `.copy()`를 붙입니다.
+
+```python
+젊은층 = 수용자[수용자["나이"] < 30].copy()
+```
+:::
+
 ## 2.7 요약하기
 
 ```{python}
@@ -115,6 +187,10 @@ import pandas as pd
 ```{python}
 수용자["죄명"].value_counts()   # 값별 개수
 ```
+
+::: {.callout-note title="value_counts()는 빈칸을 세지 않습니다"}
+`수용자["상담횟수"].value_counts()`의 합은 10이 아니라 9입니다. 빈칸까지 세려면 `value_counts(dropna=False)`를 씁니다.
+:::
 
 ```{python}
 수용자.describe()   # 숫자 열의 요약 통계
@@ -142,6 +218,14 @@ import pandas as pd
 )
 ```
 
+::: {.callout-tip title="집계 결과를 일반 표로 바꾸기"}
+`groupby()` 결과는 그룹 이름(시설)이 행 이름(인덱스) 자리에 들어갑니다. 다른 표와 합치거나 저장하려면 `.reset_index()`를 붙여 일반 열로 바꿉니다.
+
+```python
+수용자.groupby("시설")["나이"].mean().reset_index()
+```
+:::
+
 ## 2.9 결측치 (비어 있는 값)
 
 ```{python}
@@ -165,6 +249,14 @@ print(수용자["상담횟수"].count())   # 값이 있는 칸 수
 print(수용자["상담횟수"].fillna(0).mean())   # 10명 기준 평균
 ```
 
+::: {.callout-warning title="빈칸은 ==로 찾을 수 없습니다"}
+`수용자["상담횟수"] == None`이나 `== float("nan")`으로는 빈칸을 찾지 못합니다(`NaN`은 자기 자신과도 같지 않음). 빈칸은 반드시 `isna()`로 찾습니다.
+:::
+
+::: {.callout-note title="빈칸이 있으면 정수 열이 실수가 됩니다"}
+상담횟수가 `2.0`, `5.0`처럼 소수점이 붙어 보이는 이유입니다. 빈칸(`NaN`)은 실수로만 표현할 수 있어서 열 전체가 실수가 됩니다.
+:::
+
 ## 2.10 날짜 다루기
 
 `입소일`은 지금 글자로 들어 있습니다. `pd.to_datetime()`으로 날짜로 바꾸면 연도를 꺼내거나 날짜 계산을 할 수 있습니다.
@@ -173,6 +265,12 @@ print(수용자["상담횟수"].fillna(0).mean())   # 10명 기준 평균
 수용자["입소일"] = pd.to_datetime(수용자["입소일"])
 수용자["입소일"].dt.year
 ```
+
+::: {.callout-warning title="날짜 형식이 애매할 때"}
+`pd.to_datetime("01/02/2026")`은 1월 2일로 읽힙니다(월/일 순서). 2월 1일이라는 뜻이었다면 틀린 값이 됩니다. 형식을 알 때는 `pd.to_datetime(열, format="%d/%m/%Y")`처럼 직접 지정합니다.
+
+엑셀에서 온 날짜가 `45000` 같은 숫자로 보이면 엑셀 일련번호입니다. `pd.to_datetime(45000, unit="D", origin="1899-12-30")`로 바꾸면 2023-03-15가 됩니다.
+:::
 
 입소일에 형기(개월)를 더해 출소예정일을 구합니다. 1장에서 배운 `for` 반복문으로 한 명씩 계산해 리스트에 모은 뒤 새 열로 넣습니다. `zip()`은 두 열에서 값을 한 쌍씩 꺼내 줍니다.
 
@@ -208,6 +306,14 @@ for 입소일, 형기 in zip(수용자["입소일"], 수용자["형기_개월"])
 합친표 = pd.merge(수용자, 시설현황, on="시설")
 합친표[["수용번호", "시설", "정원", "현원"]]
 ```
+
+::: {.callout-warning title="기준 열의 자료형이 다르면 합쳐지지 않습니다"}
+한쪽 표의 수용번호는 숫자(`1001`), 다른 쪽은 글자(`"1001"`)이면 `ValueError: You are trying to merge on int64 and object columns`가 납니다. `dtypes`로 확인하고 `표["수용번호"] = 표["수용번호"].astype(str)`처럼 한쪽에 맞춥니다. 글자끼리라도 `"A교도소 "`처럼 공백이 붙어 있으면 짝을 찾지 못합니다.
+:::
+
+::: {.callout-warning title="합친 뒤 행 수를 확인하기"}
+상대 표에 같은 키가 두 번 들어 있으면 짝이 두 번씩 붙어 행이 늘어납니다. 시설현황에 A교도소 행이 하나 더 있으면 합친표는 10행이 아니라 14행이 됩니다. 합치기 전과 후에 `len()`으로 행 수를 비교하는 습관을 들입니다.
+:::
 
 `pd.merge()`는 수용자 한 명씩 시설현황에서 같은 시설을 찾아 정원과 현원을 붙입니다. 아래 그림이 그 과정입니다.
 
@@ -250,6 +356,10 @@ def 연령대(나이):
 수용자["연령대"] = 수용자["나이"].apply(연령대)
 수용자[["수용번호", "나이", "연령대"]]
 ```
+
+::: {.callout-note title="apply에는 함수 이름만 넣습니다"}
+`수용자["나이"].apply(연령대)`처럼 괄호 없이 함수 이름만 넣습니다. `apply(연령대())`처럼 괄호를 붙이면 그 자리에서 함수를 값 없이 실행하게 되어 `TypeError`가 납니다.
+:::
 
 ```{python}
 수용자["연령대"].value_counts()
@@ -327,6 +437,10 @@ def 출소예정자(표, 기준일="2026-12-01", 개월=6):
 ```{python}
 합친표.to_csv("합친표.csv", index=False, encoding="utf-8-sig")
 ```
+
+::: {.callout-note title="index=False를 빼면"}
+맨 앞에 0, 1, 2 ... 번호 열이 함께 저장됩니다. 엑셀에서 열었을 때 이름 없는 열이 하나 더 보이면 이 때문입니다.
+:::
 
 `encoding="utf-8-sig"`로 저장해야 엑셀에서 열었을 때 한글이 깨지지 않습니다. Colab에서 저장한 파일은 왼쪽 폴더 아이콘에서 내려받거나 아래 코드로 내려받습니다.
 

@@ -20,19 +20,19 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: 강의 소개
+        text: 소개
       - href: 01_python_basics.qmd
-        text: 1. 파이썬 기초
+        text: 1. 기초
       - href: 02_pandas.qmd
-        text: 2. 데이터 다루기
+        text: 2. 데이터
       - href: 03_visualization.qmd
         text: 3. 시각화
       - href: 04_statistics.qmd
-        text: 4. 기초통계와 회귀
+        text: 4. 통계
       - href: 05_ai.qmd
-        text: 5. AI와 함께 분석하기
+        text: 5. AI 활용
       - href: 06_yearbook.qmd
-        text: 6. 교정통계연보 실습
+        text: 6. 연보 실습
   sidebar:
     style: floating
     contents:
@@ -56,6 +56,7 @@ lang: ko
 format:
   html:
     theme: cosmo
+    css: styles.css
     toc: true
     toc-depth: 3
     toc-title: "목차"

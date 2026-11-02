@@ -10,10 +10,10 @@
 |---|---|---|
 | 1. 파이썬 기초 | 자료형, 연산자, 리스트, 딕셔너리, 조건문, 반복문, 함수 | [Colab](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/01_python_basics.ipynb) |
 | 2. 데이터 다루기 | pandas로 읽기, 선택, 필터, 집계, 결측치, 날짜, 병합, 함수로 결과 뽑기 | [Colab](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/02_pandas.ipynb) |
-| 3. 시각화 | 막대그래프, 히스토그램, 산점도 | [Colab](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/03_visualization.ipynb) |
+| 3. 시각화 | 막대그래프, 히스토그램, 산점도, seaborn(색 구분, 상자그림, 회귀선, 히트맵) | [Colab](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/03_visualization.ipynb) |
 | 4. 기초통계와 회귀 | 기술통계, 교차표, 평균 비교, 선형·로지스틱 회귀 | [Colab](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/04_statistics.ipynb) |
 | 5. AI와 함께 분석하기 | AI에게 요청하기, 함수로 받기, 받은 코드 검증하기 | [Colab](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/05_ai.ipynb) |
-| 6. 교정통계연보 실습 | 수용률 35년 추이, 교정공무원 1인당 수용인원, 죄명별 구성 변화, 고령 수형자 | [Colab](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/06_yearbook.ipynb) |
+| 6. 교정통계연보 실습 | 수용률 35년 추이, 교정공무원 1인당 수용인원, 죄명별 구성 변화, 고령 수형자, seaborn 히트맵 | [Colab](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/06_yearbook.ipynb) |
 
 ## 폴더 구성
 

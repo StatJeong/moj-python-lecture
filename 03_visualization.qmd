@@ -4,7 +4,7 @@ title: "3. 시각화"
 
 [Colab에서 실습 노트북 열기](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/03_visualization.ipynb)
 
-이 장에서는 matplotlib으로 막대그래프, 히스토그램, 산점도를 그립니다.
+이 장에서는 matplotlib으로 막대그래프, 히스토그램, 산점도를 그리고, seaborn으로 색 구분, 회귀선, 히트맵을 더한 그래프를 그립니다.
 
 ## 3.1 준비
 
@@ -29,6 +29,12 @@ plt.rcParams["axes.unicode_minus"] = False      # 음수 부호 깨짐 방지
 수용자 = pd.read_csv(주소 + "inmates.csv")
 시설현황 = pd.read_csv(주소 + "facilities.csv")
 ```
+
+::: {.callout-warning title="한글이 네모(□)로 나올 때"}
+- 글꼴 설치 칸과 설정 칸을 그래프보다 먼저 실행했는지 확인합니다.
+- 세션을 다시 시작했다면 두 칸을 다시 실행합니다. 설치한 글꼴도 함께 사라집니다.
+- 축의 음수 부호만 네모로 나오면 `axes.unicode_minus` 줄을 확인합니다.
+:::
 
 Colab 노트북은 장마다 따로 실행되므로, 새 노트북을 열면 데이터를 다시 읽어야 합니다.
 
@@ -57,6 +63,14 @@ plt.show()
 | `plt.title()`, `plt.xlabel()`, `plt.ylabel()` | 제목과 축 이름 |
 | `plt.show()` | 그림 보여주기 |
 
+::: {.callout-note title="그래프마다 plt.figure()로 시작"}
+한 칸에서 `plt.figure()` 없이 그래프를 두 번 그리면 같은 그림 위에 겹쳐 그려집니다. 그래프마다 `plt.figure()`로 새 그림판을 만듭니다.
+:::
+
+::: {.callout-tip title="막대 순서 정하기"}
+`value_counts()`는 많은 순서로 정렬합니다. 이름 순으로 그리려면 `.sort_index()`를, 원하는 순서가 있으면 `.reindex(["S1", "S2", "S3", "S4"])`처럼 순서를 직접 정합니다.
+:::
+
 ## 3.3 히스토그램: 나이 분포
 
 숫자 하나의 분포를 볼 때는 히스토그램을 씁니다. `bins`로 구간을 정합니다.
@@ -83,7 +97,9 @@ plt.ylabel("징벌횟수")
 plt.show()
 ```
 
-수용자는 10명인데 점은 8개만 보입니다. 1007번은 상담횟수가 비어 있어 빠졌고, 1001번과 1009번은 둘 다 (2, 2)라서 점이 겹쳤습니다. 그래프만 보고 판단하기 전에 데이터를 함께 확인해야 합니다.
+::: {.callout-warning title="그래프에 보이지 않는 값"}
+수용자는 10명인데 점은 8개만 보입니다. 1007번은 상담횟수가 비어 있어 빠졌고, 1001번과 1009번은 둘 다 (2, 2)라서 점이 겹쳤습니다. 그래프는 빈칸을 아무 말 없이 빼고 그리고, 같은 위치의 점은 하나로 보입니다. 그래프만 보고 판단하기 전에 데이터를 함께 확인합니다.
+:::
 
 ## 3.5 시설별 수용률
 
@@ -109,7 +125,92 @@ plt.ylabel("징벌횟수")
 plt.show()
 ```
 
-## 3.7 그래프 저장하기
+## 3.7 seaborn으로 그래프 꾸미기
+
+seaborn은 matplotlib 위에서 동작하는 그래프 도구입니다. 표(DataFrame)와 열 이름만 알려주면 색 구분, 범례, 회귀선 같은 것을 알아서 그려 줍니다. Colab에는 이미 설치되어 있습니다.
+
+```{python}
+import seaborn as sns
+
+sns.set_theme(style="whitegrid", font="NanumGothic", rc={"axes.unicode_minus": False})
+```
+
+::: {.callout-warning title="sns.set_theme()은 한글 글꼴 설정을 지웁니다"}
+`sns.set_theme()`을 글꼴 없이 실행하면 3.1절에서 한 글꼴 설정이 기본값으로 돌아가 한글이 다시 네모로 나옵니다. 위처럼 `font="NanumGothic"`을 함께 넣습니다. 이 칸 다음부터 그리는 matplotlib 그래프에도 seaborn 모양이 적용됩니다.
+:::
+
+seaborn 함수는 모두 `data=표, x="열 이름", y="열 이름"` 형태로 씁니다.
+
+### 그룹을 색으로 나눈 막대: countplot
+
+```{python}
+plt.figure(figsize=(7, 4))
+sns.countplot(data=수용자, x="죄명", hue="시설")
+plt.title("죄명별, 시설별 수용자 수")
+plt.ylabel("인원(명)")
+plt.yticks([0, 1, 2])
+plt.show()
+```
+
+`hue="시설"`이 시설마다 색을 나누고 범례를 붙입니다. 3.2절처럼 `value_counts()`로 미리 세지 않아도 seaborn이 개수를 셉니다.
+
+### 상자그림과 점: boxplot + stripplot
+
+```{python}
+plt.figure(figsize=(6, 4))
+sns.boxplot(data=수용자, x="직업훈련", y="징벌횟수", color="lightgray", showfliers=False)
+sns.stripplot(data=수용자, x="직업훈련", y="징벌횟수", color="black", size=8)
+plt.title("직업훈련 참여 여부에 따른 징벌횟수")
+plt.show()
+```
+
+상자는 가운데 50%의 범위와 중앙값을, 검은 점은 수용자 한 명 한 명을 나타냅니다. 4장 4.7절에서 다룰 "직업훈련 N인 5명이 모두 징벌을 받은" 상황이 그림으로 보입니다.
+
+::: {.callout-note title="showfliers=False"}
+상자그림은 동떨어진 값을 따로 점으로 찍습니다. 위처럼 점을 따로 겹쳐 그릴 때는 같은 점이 두 번 찍히지 않도록 `showfliers=False`로 끕니다.
+:::
+
+### 색과 크기로 정보를 더한 산점도
+
+```{python}
+plt.figure(figsize=(7, 4))
+sns.scatterplot(data=수용자, x="상담횟수", y="징벌횟수", hue="시설", size="나이", sizes=(60, 400))
+plt.title("상담횟수와 징벌횟수 (색: 시설, 크기: 나이)")
+plt.legend(bbox_to_anchor=(1.02, 1), loc="upper left")
+plt.show()
+```
+
+`plt.legend(bbox_to_anchor=(1.02, 1), loc="upper left")`는 범례를 그래프 오른쪽 바깥으로 옮겨 점을 가리지 않게 합니다.
+
+### 회귀선이 있는 산점도: regplot
+
+```{python}
+plt.figure(figsize=(6, 4))
+sns.regplot(data=수용자, x="상담횟수", y="징벌횟수")
+plt.title("상담횟수와 징벌횟수의 관계")
+plt.show()
+```
+
+직선은 4장 4.5절의 선형회귀선과 같고, 옅은 띠는 그 선의 95% 신뢰구간입니다. 점이 9개뿐이라 띠가 넓습니다.
+
+### 상관계수 히트맵: heatmap
+
+```{python}
+상관 = 수용자[["나이", "형기_개월", "상담횟수", "징벌횟수"]].corr().round(2)
+
+plt.figure(figsize=(5, 4))
+sns.heatmap(상관, annot=True, cmap="RdBu_r", vmin=-1, vmax=1)
+plt.title("숫자 열 사이의 상관계수")
+plt.show()
+```
+
+`corr()`는 숫자 열끼리의 상관계수(-1 ~ 1)를 표로 계산하고, `heatmap`은 그 표를 색으로 칠합니다. `annot=True`는 칸 안에 숫자를 적습니다.
+
+::: {.callout-note title="10명 자료의 상관계수"}
+상담횟수와 징벌횟수의 상관계수가 -0.92로 아주 강하게 나오지만, 강의용으로 만든 10명짜리 가상 자료라서 그렇습니다. 사람 수가 적으면 상관계수가 우연히 크게 나오기 쉽습니다. 상관이 크다고 한쪽이 다른 쪽의 원인이라는 뜻도 아닙니다.
+:::
+
+## 3.8 그래프 저장하기
 
 `plt.show()` 앞에 `plt.savefig()`를 넣으면 그림 파일로 저장됩니다. 보고서에 넣을 때는 `dpi`를 150 이상으로 합니다.
 
@@ -121,7 +222,15 @@ plt.savefig("죄명별_수용자수.png", dpi=150, bbox_inches="tight")
 plt.show()
 ```
 
-## 3.8 연습문제
+::: {.callout-warning title="savefig는 show보다 먼저"}
+`plt.show()` 다음에 `plt.savefig()`를 실행하면 빈 그림이 저장됩니다. 그림을 보여주면서 그림판이 닫히기 때문입니다. 저장하는 줄은 항상 `plt.show()` 앞에 둡니다.
+:::
+
+::: {.callout-tip title="seaborn 그래프도 같은 방법으로 저장합니다"}
+seaborn은 matplotlib 위에서 그리므로 `plt.savefig()`를 그대로 씁니다.
+:::
+
+## 3.9 연습문제
 
 1. 경비처우급별 인원을 막대그래프로 그리세요.
 
@@ -162,5 +271,28 @@ plt.xlabel("나이")
 plt.ylabel("형기(개월)")
 plt.show()
 ```
+
+</details>
+
+3. seaborn으로 경비처우급별 징벌횟수를 상자그림과 점으로 함께 그리세요. 경비처우급은 S1, S2, S3, S4 순서로 놓습니다.
+
+```{python}
+#| eval: false
+# 여기에 코드를 작성해 보세요
+```
+
+<details>
+<summary>정답 보기</summary>
+
+```{python}
+순서 = ["S1", "S2", "S3", "S4"]
+plt.figure(figsize=(6, 4))
+sns.boxplot(data=수용자, x="경비처우급", y="징벌횟수", order=순서, color="lightgray", showfliers=False)
+sns.stripplot(data=수용자, x="경비처우급", y="징벌횟수", order=순서, color="black", size=8)
+plt.title("경비처우급별 징벌횟수")
+plt.show()
+```
+
+`order=`로 x축의 순서를 정합니다.
 
 </details>

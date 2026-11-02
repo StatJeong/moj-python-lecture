@@ -1,0 +1,6 @@
+/* 넓은 그래프가 본문 폭을 넘지 않도록 */
+.cell-output-display img,
+main img {
+  max-width: 100%;
+  height: auto;
+}
