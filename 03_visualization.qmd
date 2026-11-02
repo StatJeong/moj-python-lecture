@@ -4,7 +4,7 @@ title: "3. 시각화"
 
 [Colab에서 실습 노트북 열기](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/03_visualization.ipynb)
 
-이 장에서는 먼저 그래프가 어떤 부분으로 이루어지고 어떤 순서로 쌓이는지 살펴본 뒤, matplotlib으로 막대그래프, 히스토그램, 산점도를 그리고, seaborn으로 색 구분, 회귀선, 히트맵을 더한 그래프를 그립니다.
+이 장에서는 먼저 그래프가 어떤 부분으로 이루어지고 어떤 순서로 쌓이는지 살펴본 뒤, matplotlib으로 막대그래프와 산점도를 그리고, seaborn으로 표 전체를 색으로 칠하는 히트맵을 그립니다.
 
 ## 3.1 준비
 
@@ -85,7 +85,7 @@ Colab에서 칸을 실행하면 모든 줄이 실행된 뒤 완성된 그림 하
 :::
 
 ::: {.callout-note title="나중에 쌓은 층이 위에 보입니다"}
-평균선을 막대보다 먼저 그리면 막대에 가려질 수 있습니다. 순서를 바꾸지 않고 앞뒤를 정하려면 `zorder=` 값을 줍니다. 값이 클수록 위에 그려집니다(6장 6.8절에서 막대 위의 흰 점에 사용).
+평균선을 막대보다 먼저 그리면 막대에 가려질 수 있습니다. 순서를 바꾸지 않고 앞뒤를 정하려면 `zorder=` 값을 줍니다. 값이 클수록 위에 그려집니다.
 :::
 
 ### 두 가지 쓰는 방식: plt 방식과 ax 방식
@@ -112,8 +112,8 @@ fig, axes = plt.subplots(1, 2, figsize=(10, 4))   # 그림판 하나에 칸 두 
 axes[0].bar(죄명별.index, 죄명별.values)           # 왼쪽 칸
 axes[0].set_title("죄명별 수용자 수")
 
-axes[1].hist(수용자["나이"], bins=[20, 30, 40, 50, 60], edgecolor="white")   # 오른쪽 칸
-axes[1].set_title("나이 분포")
+axes[1].scatter(수용자["상담횟수"], 수용자["징벌횟수"])   # 오른쪽 칸
+axes[1].set_title("상담횟수와 징벌횟수")
 
 plt.tight_layout()   # 칸 사이 간격을 자동으로 맞춤
 plt.show()
@@ -163,20 +163,7 @@ plt.show()
 `value_counts()`는 많은 순서로 정렬합니다. 이름 순으로 그리려면 `.sort_index()`를, 원하는 순서가 있으면 `.reindex(["S1", "S2", "S3", "S4"])`처럼 순서를 직접 정합니다.
 :::
 
-## 3.4 히스토그램: 나이 분포
-
-숫자 하나의 분포를 볼 때는 히스토그램을 씁니다. `bins`로 구간을 정합니다.
-
-```{python}
-plt.figure(figsize=(6, 4))
-plt.hist(수용자["나이"], bins=[20, 30, 40, 50, 60], edgecolor="white")
-plt.title("수용자 나이 분포")
-plt.xlabel("나이")
-plt.ylabel("인원(명)")
-plt.show()
-```
-
-## 3.5 산점도: 상담횟수와 징벌횟수
+## 3.4 산점도: 상담횟수와 징벌횟수
 
 숫자 두 개의 관계를 볼 때는 산점도를 씁니다.
 
@@ -193,7 +180,7 @@ plt.show()
 수용자는 10명인데 점은 8개만 보입니다. 1007번은 상담횟수가 비어 있어 빠졌고, 1001번과 1009번은 둘 다 (2, 2)라서 점이 겹쳤습니다. 그래프는 빈칸을 아무 말 없이 빼고 그리고, 같은 위치의 점은 하나로 보입니다. 그래프만 보고 판단하기 전에 데이터를 함께 확인합니다.
 :::
 
-## 3.6 시설별 수용률
+## 3.5 시설별 수용률
 
 ```{python}
 시설현황["수용률"] = (시설현황["현원"] / 시설현황["정원"] * 100).round(1)
@@ -206,7 +193,7 @@ plt.ylabel("수용률(%)")
 plt.show()
 ```
 
-## 3.7 집계 결과를 바로 그리기
+## 3.6 집계 결과를 바로 그리기
 
 `groupby()`로 집계한 결과에 `.plot()`을 붙이면 바로 그래프가 됩니다.
 
@@ -217,9 +204,9 @@ plt.ylabel("징벌횟수")
 plt.show()
 ```
 
-## 3.8 seaborn으로 그래프 꾸미기
+## 3.7 seaborn: 표를 색으로 칠하는 히트맵
 
-seaborn은 matplotlib 위에서 동작하는 그래프 도구입니다. 표(DataFrame)와 열 이름만 알려주면 색 구분, 범례, 회귀선 같은 것을 알아서 그려 줍니다. Colab에는 이미 설치되어 있습니다.
+seaborn은 matplotlib 위에서 동작하는 그래프 도구입니다. 표(DataFrame)를 넘겨주면 색 구분, 범례 같은 것을 알아서 그려 줍니다. Colab에는 이미 설치되어 있습니다. 이 강의에서는 표 전체를 색으로 칠하는 히트맵을 씁니다(6장에서도 씀).
 
 ```{python}
 import seaborn as sns
@@ -231,75 +218,21 @@ sns.set_theme(style="whitegrid", font="NanumGothic", rc={"axes.unicode_minus": F
 `sns.set_theme()`을 글꼴 없이 실행하면 3.1절에서 한 글꼴 설정이 기본값으로 돌아가 한글이 다시 네모로 나옵니다. 위처럼 `font="NanumGothic"`을 함께 넣습니다. 이 칸 다음부터 그리는 matplotlib 그래프에도 seaborn 모양이 적용됩니다.
 :::
 
-seaborn 함수는 모두 `data=표, x="열 이름", y="열 이름"` 형태로 씁니다.
-
 ### seaborn은 matplotlib 위에 쌓인 층
 
 ![seaborn과 matplotlib의 관계](images/seaborn_stack.png)
 
-seaborn은 그림을 직접 그리지 않습니다. 표를 받아 개수, 평균, 회귀선 같은 계산을 하고 색과 범례를 정한 다음, 실제 그리기는 matplotlib에 맡깁니다. 그래서 seaborn으로 그린 그래프 위에 3.2절의 matplotlib 명령(`plt.title`, `plt.ylabel`, `plt.axhline` 등)으로 층을 더 쌓을 수 있습니다. 아래 그래프들도 모두 seaborn이 그린 층 위에 matplotlib으로 제목과 축 이름을 더한 것입니다.
+seaborn은 그림을 직접 그리지 않습니다. 표를 받아 개수, 평균, 회귀선 같은 계산을 하고 색과 범례를 정한 다음, 실제 그리기는 matplotlib에 맡깁니다. 그래서 seaborn으로 그린 그래프 위에 3.2절의 matplotlib 명령(`plt.title`, `plt.ylabel`, `plt.axhline` 등)으로 층을 더 쌓을 수 있습니다. 아래 히트맵도 seaborn이 그린 층 위에 matplotlib으로 제목을 더한 것입니다.
 
-seaborn 함수는 하는 일에 따라 세 묶음으로 나뉩니다.
+seaborn에는 히트맵 말고도 함수가 많습니다. 하는 일에 따라 세 묶음으로 나뉘므로, AI가 처음 보는 seaborn 함수를 주면 어느 묶음인지부터 확인하면 됩니다.
 
 ![seaborn 함수 구성](images/seaborn_functions.png)
 
 자세한 설명: [seaborn 공식 문서 Overview of seaborn plotting functions](https://seaborn.pydata.org/tutorial/function_overview.html)
 
 ::: {.callout-tip title="seaborn 함수는 그린 칸을 돌려줍니다"}
-`ax = sns.countplot(data=수용자, x="죄명")`처럼 결과를 받아 두면, 3.2절의 ax 방식(`ax.set_title(...)`, `ax.set_ylabel(...)`)으로 그 칸에 층을 이어서 쌓을 수 있습니다.
+`ax = sns.heatmap(상관)`처럼 결과를 받아 두면, 3.2절의 ax 방식(`ax.set_title(...)`, `ax.set_ylabel(...)`)으로 그 칸에 층을 이어서 쌓을 수 있습니다.
 :::
-
-### 그룹을 색으로 나눈 막대: countplot
-
-```{python}
-plt.figure(figsize=(7, 4))
-sns.countplot(data=수용자, x="죄명", hue="시설")
-plt.title("죄명별, 시설별 수용자 수")
-plt.ylabel("인원(명)")
-plt.yticks([0, 1, 2])
-plt.show()
-```
-
-`hue="시설"`이 시설마다 색을 나누고 범례를 붙입니다. 3.3절처럼 `value_counts()`로 미리 세지 않아도 seaborn이 개수를 셉니다. `sns.countplot()`이 막대 층을 그리고, 그 위에 `plt.title()`, `plt.ylabel()`, `plt.yticks()`가 matplotlib 층을 더 쌓았습니다.
-
-### 상자그림과 점: boxplot + stripplot
-
-```{python}
-plt.figure(figsize=(6, 4))
-sns.boxplot(data=수용자, x="직업훈련", y="징벌횟수", color="lightgray", showfliers=False)
-sns.stripplot(data=수용자, x="직업훈련", y="징벌횟수", color="black", size=8)
-plt.title("직업훈련 참여 여부에 따른 징벌횟수")
-plt.show()
-```
-
-상자는 가운데 50%의 범위와 중앙값을, 검은 점은 수용자 한 명 한 명을 나타냅니다. 4장 4.7절에서 다룰 "직업훈련 N인 5명이 모두 징벌을 받은" 상황이 그림으로 보입니다.
-
-::: {.callout-note title="showfliers=False"}
-상자그림은 동떨어진 값을 따로 점으로 찍습니다. 위처럼 점을 따로 겹쳐 그릴 때는 같은 점이 두 번 찍히지 않도록 `showfliers=False`로 끕니다.
-:::
-
-### 색과 크기로 정보를 더한 산점도
-
-```{python}
-plt.figure(figsize=(7, 4))
-sns.scatterplot(data=수용자, x="상담횟수", y="징벌횟수", hue="시설", size="나이", sizes=(60, 400))
-plt.title("상담횟수와 징벌횟수 (색: 시설, 크기: 나이)")
-plt.legend(bbox_to_anchor=(1.02, 1), loc="upper left")
-plt.show()
-```
-
-`plt.legend(bbox_to_anchor=(1.02, 1), loc="upper left")`는 범례를 그래프 오른쪽 바깥으로 옮겨 점을 가리지 않게 합니다.
-
-### 회귀선이 있는 산점도: regplot
-
-```{python}
-plt.figure(figsize=(6, 4))
-sns.regplot(data=수용자, x="상담횟수", y="징벌횟수")
-plt.title("상담횟수와 징벌횟수의 관계")
-plt.show()
-```
-
-직선은 4장 4.5절의 선형회귀선과 같고, 옅은 띠는 그 선의 95% 신뢰구간입니다. 점이 9개뿐이라 띠가 넓습니다.
 
 ### 상관계수 히트맵: heatmap
 
@@ -325,7 +258,7 @@ plt.show()
 마음에 드는 그림을 누르면 그 그림을 만든 코드가 함께 나옵니다. 열 이름을 우리 데이터에 맞게 바꾸거나, 그림 주소를 AI에게 주고 "이 예제처럼 수용자 데이터로 그려줘"라고 요청하면 됩니다.
 :::
 
-## 3.9 그래프 저장하기
+## 3.8 그래프 저장하기
 
 `plt.show()` 앞에 `plt.savefig()`를 넣으면 그림 파일로 저장됩니다. 보고서에 넣을 때는 `dpi`를 150 이상으로 합니다.
 
@@ -345,7 +278,7 @@ plt.show()
 seaborn은 matplotlib 위에서 그리므로 `plt.savefig()`를 그대로 씁니다.
 :::
 
-## 3.10 연습문제
+## 3.9 연습문제
 
 1. 경비처우급별 인원을 막대그래프로 그리세요.
 
@@ -386,28 +319,5 @@ plt.xlabel("나이")
 plt.ylabel("형기(개월)")
 plt.show()
 ```
-
-</details>
-
-3. seaborn으로 경비처우급별 징벌횟수를 상자그림과 점으로 함께 그리세요. 경비처우급은 S1, S2, S3, S4 순서로 놓습니다.
-
-```{python}
-#| eval: false
-# 여기에 코드를 작성해 보세요
-```
-
-<details>
-<summary>정답 보기</summary>
-
-```{python}
-순서 = ["S1", "S2", "S3", "S4"]
-plt.figure(figsize=(6, 4))
-sns.boxplot(data=수용자, x="경비처우급", y="징벌횟수", order=순서, color="lightgray", showfliers=False)
-sns.stripplot(data=수용자, x="경비처우급", y="징벌횟수", order=순서, color="black", size=8)
-plt.title("경비처우급별 징벌횟수")
-plt.show()
-```
-
-`order=`로 x축의 순서를 정합니다.
 
 </details>

@@ -229,7 +229,7 @@ def seaborn_functions():
         ("범주 (categorical)", "catplot", ["stripplot", "swarmplot", "boxplot", "violinplot",
                                           "pointplot", "barplot", "countplot"], "#FFF3D6", "그룹별 비교"),
     ]
-    쓴것 = {"scatterplot": "3장", "lineplot": "6장", "stripplot": "3장", "boxplot": "3장", "countplot": "3장"}
+    쓴것 = {}   # 이 강의에서 쓰는 seaborn 함수는 묶음 밖의 heatmap 하나
     for j, (이름, 큰함수, 함수들, 색, 뜻) in enumerate(묶음):
         x0 = 0.3 + j * 3.6
         ax.add_patch(FancyBboxPatch((x0, 0.35), 3.3, 4.95, boxstyle="round,pad=0.02,rounding_size=0.12",
@@ -243,7 +243,7 @@ def seaborn_functions():
                     fontsize=11.5, family="DejaVu Sans Mono" if f not in 쓴것 else BODY,
                     color="black" if f in 쓴것 else "0.3")
     ax.text(5.5, 0.05, "위쪽 큰 함수(relplot 등)는 그림판 전체를, 아래 함수들은 그래프 칸 하나를 그립니다. "
-            "regplot(회귀선)과 heatmap(히트맵)은 이 묶음 밖의 함수입니다(3장).",
+            "이 강의에서 쓰는 heatmap(히트맵)은 이 묶음 밖의 함수입니다(3장 3.7절, 6장 6.7절).",
             ha="center", fontsize=9.5, color="0.35")
     fig.savefig(IMG / "seaborn_functions.png", dpi=110, bbox_inches="tight", facecolor="white")
     plt.close(fig)
