@@ -366,10 +366,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="준비" class="level2">
 <h2 class="anchored" data-anchor-id="준비">6.2 준비</h2>
-<div id="93c63e25" class="cell" data-execution_count="1">
+<div id="9a58412e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>apt<span class="op">-</span>get <span class="op">-</span>qq install <span class="op">-</span>y fonts<span class="op">-</span>nanum <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="927b7b59" class="cell" data-execution_count="2">
+<div id="a9d4b50e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> font_manager <span class="im">as</span> fm</span>
@@ -387,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="수용률-35년-추이" class="level2">
 <h2 class="anchored" data-anchor-id="수용률-35년-추이">6.3 수용률 35년 추이</h2>
-<div id="89251ddb" class="cell" data-execution_count="3">
+<div id="0ed12e82" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>수용.head()</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -445,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="b289edbc" class="cell" data-execution_count="4">
+<div id="5d4bb189" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>수용.tail()</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -506,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="연보의-수용률을-직접-다시-계산하기" class="level3">
 <h3 class="anchored" data-anchor-id="연보의-수용률을-직접-다시-계산하기">연보의 수용률을 직접 다시 계산하기</h3>
 <p>1장에서 만든 수용률 함수로 35년치 수용률을 다시 계산하고, 연보에 적힌 값과 같은지 확인합니다. 함수에 열을 통째로 넣으면 모든 행이 한 번에 계산됩니다.</p>
-<div id="723fff45" class="cell" data-execution_count="5">
+<div id="b846595c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> 수용률계산(현원, 정원):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(현원 <span class="op">/</span> 정원 <span class="op">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -562,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="54078bf2" class="cell" data-execution_count="6">
+<div id="882c5f64" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((수용[<span class="st">"수용률_계산"</span>] <span class="op">==</span> 수용[<span class="st">"수용률"</span>]).<span class="bu">all</span>())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
@@ -572,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="가장-높았던-해-정원-이내였던-해" class="level3">
 <h3 class="anchored" data-anchor-id="가장-높았던-해-정원-이내였던-해">가장 높았던 해, 정원 이내였던 해</h3>
-<div id="3bd04c05" class="cell" data-execution_count="7">
+<div id="98876c3b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>수용.loc[수용[<span class="st">"수용률"</span>].idxmax()]</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>연도           2003.0
@@ -583,7 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Name: 12, dtype: float64</code></pre>
 </div>
 </div>
-<div id="aacd461d" class="cell" data-execution_count="8">
+<div id="00807a9c" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>수용[수용[<span class="st">"수용률"</span>] <span class="op">&lt;</span> <span class="dv">100</span>][[<span class="st">"연도"</span>, <span class="st">"수용정원"</span>, <span class="st">"1일평균수용인원"</span>, <span class="st">"수용률"</span>]]</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
@@ -631,7 +631,7 @@ Name: 12, dtype: float64</code></pre>
 </section>
 <section id="그래프로-보기" class="level3">
 <h3 class="anchored" data-anchor-id="그래프로-보기">그래프로 보기</h3>
-<div id="6e2a5c95" class="cell" data-execution_count="9">
+<div id="6d8e783c" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.plot(수용[<span class="st">"연도"</span>], 수용[<span class="st">"수용률"</span>], marker<span class="op">=</span><span class="st">"o"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">100</span>, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
@@ -648,7 +648,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 <p>수용률이 가장 높았던 해는 2003년(132.9%)인데, 1일 평균 수용인원이 가장 많았던 해는 1999년(68,087명)입니다. 정원과 수용인원을 함께 그려 보면 이유가 보입니다.</p>
-<div id="d148aae0" class="cell" data-execution_count="10">
+<div id="ffc74e0d" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.plot(수용[<span class="st">"연도"</span>], 수용[<span class="st">"수용정원"</span>], label<span class="op">=</span><span class="st">"수용정원"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.plot(수용[<span class="st">"연도"</span>], 수용[<span class="st">"1일평균수용인원"</span>], label<span class="op">=</span><span class="st">"1일 평균 수용인원"</span>)</span>
@@ -671,7 +671,7 @@ Name: 12, dtype: float64</code></pre>
 </section>
 <section id="교정공무원-1인당-수용인원-병합" class="level2">
 <h2 class="anchored" data-anchor-id="교정공무원-1인당-수용인원-병합">6.4 교정공무원 1인당 수용인원 (병합)</h2>
-<div id="cc789697" class="cell" data-execution_count="11">
+<div id="e3001bfe" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>직원</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
@@ -776,7 +776,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 <p>수용 표와 직원 표를 <code>연도</code> 기준으로 합칩니다.</p>
-<div id="f640c299" class="cell" data-execution_count="12">
+<div id="caa98e92" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>합친표 <span class="op">=</span> pd.merge(수용, 직원, on<span class="op">=</span><span class="st">"연도"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>합친표[<span class="st">"1인당수용인원"</span>] <span class="op">=</span> (합친표[<span class="st">"1일평균수용인원"</span>] <span class="op">/</span> 합친표[<span class="st">"현원"</span>]).<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>합친표[[<span class="st">"연도"</span>, <span class="st">"1일평균수용인원"</span>, <span class="st">"현원"</span>, <span class="st">"1인당수용인원"</span>]]</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
@@ -872,7 +872,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 <p>수용 표는 35행인데 합친 결과는 10행입니다. 직원 표에 2016년부터의 값만 있어서, 짝이 없는 1991~2015년은 빠졌습니다(2장 2.11절).</p>
-<div id="ff9742f4" class="cell" data-execution_count="13">
+<div id="7791bcbb" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.plot(합친표[<span class="st">"연도"</span>], 합친표[<span class="st">"1인당수용인원"</span>], marker<span class="op">=</span><span class="st">"o"</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"교정공무원 1인당 1일 평균 수용인원"</span>)</span>
@@ -890,7 +890,7 @@ Name: 12, dtype: float64</code></pre>
 <section id="증가율-함수" class="level3">
 <h3 class="anchored" data-anchor-id="증가율-함수">증가율 함수</h3>
 <p>2016년과 2025년을 비교하는 증가율 함수를 만듭니다. <code>iloc[0]</code>은 첫 행, <code>iloc[-1]</code>은 마지막 행입니다(1장 리스트의 위치와 같은 방식).</p>
-<div id="f34571df" class="cell" data-execution_count="14">
+<div id="543ddd1f" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> 증가율(처음, 나중):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>((나중 <span class="op">-</span> 처음) <span class="op">/</span> 처음 <span class="op">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -910,7 +910,7 @@ Name: 12, dtype: float64</code></pre>
 </section>
 <section id="죄명별-구성-변화" class="level2">
 <h2 class="anchored" data-anchor-id="죄명별-구성-변화">6.5 죄명별 구성 변화</h2>
-<div id="1be77d9b" class="cell" data-execution_count="15">
+<div id="0f94ed7a" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>죄명</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -1081,7 +1081,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 <p>먼저 옮긴 표가 맞는지 확인합니다. 죄명별 인원을 더하면 ’계’와 같아야 합니다.</p>
-<div id="37fbbdc8" class="cell" data-execution_count="16">
+<div id="7eba3bef" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>죄명목록 <span class="op">=</span> [<span class="st">"절도"</span>, <span class="st">"폭력행위등처벌법"</span>, <span class="st">"사기횡령"</span>, <span class="st">"성폭력"</span>, <span class="st">"마약류"</span>, <span class="st">"과실범"</span>, <span class="st">"강도"</span>, <span class="st">"살인"</span>, <span class="st">"기타"</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((죄명[죄명목록].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">==</span> 죄명[<span class="st">"계"</span>]).<span class="bu">all</span>())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1092,7 +1092,7 @@ Name: 12, dtype: float64</code></pre>
 <section id="구성비" class="level3">
 <h3 class="anchored" data-anchor-id="구성비">구성비</h3>
 <p>반복문으로 죄명마다 구성비(%)를 계산해 새 표를 만듭니다.</p>
-<div id="83b64e5e" class="cell" data-execution_count="17">
+<div id="0863c850" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>구성비 <span class="op">=</span> pd.DataFrame({<span class="st">"연도"</span>: 죄명[<span class="st">"연도"</span>]})</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 이름 <span class="kw">in</span> 죄명목록:</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    구성비[이름] <span class="op">=</span> (죄명[이름] <span class="op">/</span> 죄명[<span class="st">"계"</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
@@ -1254,7 +1254,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="34308487" class="cell" data-execution_count="18">
+<div id="cda97ab0" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 이름 <span class="kw">in</span> [<span class="st">"사기횡령"</span>, <span class="st">"마약류"</span>, <span class="st">"절도"</span>]:</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    plt.plot(구성비[<span class="st">"연도"</span>], 구성비[이름], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span>이름)</span>
@@ -1275,7 +1275,7 @@ Name: 12, dtype: float64</code></pre>
 <section id="죄명별-증가율" class="level3">
 <h3 class="anchored" data-anchor-id="죄명별-증가율">죄명별 증가율</h3>
 <p>6.4절의 증가율 함수를 반복문으로 죄명마다 부르고, 결과를 표로 모읍니다.</p>
-<div id="fc99e9ec" class="cell" data-execution_count="19">
+<div id="8979b8bb" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>결과 <span class="op">=</span> []</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 이름 <span class="kw">in</span> 죄명목록:</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    결과.append({</span>
@@ -1371,7 +1371,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="47f9f71f" class="cell" data-execution_count="20">
+<div id="4ce7216f" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.barh(증감[<span class="st">"죄명"</span>], 증감[<span class="st">"증가율"</span>])</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"gray"</span>)</span>
@@ -1392,7 +1392,7 @@ Name: 12, dtype: float64</code></pre>
 </section>
 <section id="고령-수형자" class="level2">
 <h2 class="anchored" data-anchor-id="고령-수형자">6.6 고령 수형자</h2>
-<div id="9790e3d1" class="cell" data-execution_count="21">
+<div id="e768d2b3" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>연령[<span class="st">"60세이상_비중"</span>] <span class="op">=</span> (연령[<span class="st">"60세이상"</span>] <span class="op">/</span> 연령[<span class="st">"계"</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>연령[[<span class="st">"연도"</span>, <span class="st">"60세이상"</span>, <span class="st">"60세이상_비중"</span>]]</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
@@ -1475,7 +1475,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="913003df" class="cell" data-execution_count="22">
+<div id="cc33e43b" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.bar(연령[<span class="st">"연도"</span>], 연령[<span class="st">"60세이상_비중"</span>])</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"수형자 중 60세 이상 비중"</span>)</span>
@@ -1490,7 +1490,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="0b084fd9" class="cell" data-execution_count="23">
+<div id="6cb80e10" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"60세 이상 수형자 증가율:"</span>, 증가율(연령[<span class="st">"60세이상"</span>].iloc[<span class="dv">0</span>], 연령[<span class="st">"60세이상"</span>].iloc[<span class="op">-</span><span class="dv">1</span>]), <span class="st">"%"</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>60세 이상 수형자 증가율: 102.8 %</code></pre>
@@ -1500,8 +1500,8 @@ Name: 12, dtype: float64</code></pre>
 </section>
 <section id="seaborn으로-한눈에-보기" class="level2">
 <h2 class="anchored" data-anchor-id="seaborn으로-한눈에-보기">6.7 seaborn으로 한눈에 보기</h2>
-<p>3장 3.7절의 seaborn으로 연보 자료를 한 장의 그림에 담아 봅니다.</p>
-<div id="ebf71ed0" class="cell" data-execution_count="24">
+<p>3장 3.8절의 seaborn으로 연보 자료를 한 장의 그림에 담아 봅니다.</p>
+<div id="7f57c50f" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>, font<span class="op">=</span><span class="st">"NanumGothic"</span>, rc<span class="op">=</span>{<span class="st">"axes.unicode_minus"</span>: <span class="va">False</span>})</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1522,7 +1522,7 @@ Name: 12, dtype: float64</code></pre>
 <section id="죄명-구성비-히트맵" class="level3">
 <h3 class="anchored" data-anchor-id="죄명-구성비-히트맵">죄명 구성비 히트맵</h3>
 <p>6.5절에서 만든 구성비 표를 연도(가로) x 죄명(세로)으로 돌려 색으로 칠합니다.</p>
-<div id="1ca9f6ec" class="cell" data-execution_count="25">
+<div id="3939b4a3" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>그림표 <span class="op">=</span> 구성비.set_index(<span class="st">"연도"</span>).T</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>))</span>
@@ -1583,7 +1583,7 @@ Name: 12, dtype: float64</code></pre>
 <section id="연령대별-추이-긴-표로-바꿔-한-번에-그리기" class="level3">
 <h3 class="anchored" data-anchor-id="연령대별-추이-긴-표로-바꿔-한-번에-그리기">연령대별 추이: 긴 표로 바꿔 한 번에 그리기</h3>
 <p>seaborn은 “연도, 연령대, 인원”처럼 한 행에 값 하나가 있는 긴 표를 받으면 <code>hue=</code>로 선을 나눠 한 번에 그립니다. <code>melt()</code>가 옆으로 펼쳐진 표를 긴 표로 바꿉니다.</p>
-<div id="53bd6f68" class="cell" data-execution_count="26">
+<div id="00696762" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>연령대목록 <span class="op">=</span> [<span class="st">"20세미만"</span>, <span class="st">"20대"</span>, <span class="st">"30대"</span>, <span class="st">"40대"</span>, <span class="st">"50대"</span>, <span class="st">"60세이상"</span>]</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>긴연령 <span class="op">=</span> 연령.melt(id_vars<span class="op">=</span><span class="st">"연도"</span>, value_vars<span class="op">=</span>연령대목록, var_name<span class="op">=</span><span class="st">"연령대"</span>, value_name<span class="op">=</span><span class="st">"인원"</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>긴연령.head(<span class="dv">8</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1655,14 +1655,14 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="3e277134" class="cell" data-execution_count="27">
+<div id="58d299e9" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(연령), <span class="st">"행 →"</span>, <span class="bu">len</span>(긴연령), <span class="st">"행"</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>10 행 → 60 행</code></pre>
 </div>
 </div>
 <p>10개 연도 x 6개 연령대라서 60행이 되었습니다.</p>
-<div id="4874795b" class="cell" data-execution_count="28">
+<div id="8ee043c3" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>긴연령, x<span class="op">=</span><span class="st">"연도"</span>, y<span class="op">=</span><span class="st">"인원"</span>, hue<span class="op">=</span><span class="st">"연령대"</span>, marker<span class="op">=</span><span class="st">"o"</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"수형자 연령대별 인원 (2016~2025년)"</span>)</span>
@@ -1710,7 +1710,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 <section id="준비-색과-공통-모양을-함수로" class="level3">
 <h3 class="anchored" data-anchor-id="준비-색과-공통-모양을-함수로">준비: 색과 공통 모양을 함수로</h3>
-<div id="ed5f3ad5" class="cell" data-execution_count="29">
+<div id="40cc1f9c" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"white"</span>, font<span class="op">=</span><span class="st">"NanumGothic"</span>, rc<span class="op">=</span>{<span class="st">"axes.unicode_minus"</span>: <span class="va">False</span>})</span>
@@ -1738,7 +1738,7 @@ Name: 12, dtype: float64</code></pre>
 <figcaption>원본: 『2026 교정통계연보』 39쪽 도표Ⅰ-23</figcaption>
 </figure>
 </div>
-<div id="094cd072" class="cell" data-execution_count="30">
+<div id="17e0a596" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(직원))   <span class="co"># 연도 위치 0, 1, ..., 9</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>폭 <span class="op">=</span> <span class="fl">0.3</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1815,7 +1815,7 @@ Name: 12, dtype: float64</code></pre>
 </figure>
 </div>
 <p>인원(명)과 수용률(%)은 단위가 달라 세로축 하나로는 함께 그릴 수 없습니다. <code>twinx()</code>로 같은 가로축을 쓰는 두 번째 세로축을 만들어 꺾은선을 그립니다.</p>
-<div id="b63a3dcb" class="cell" data-execution_count="31">
+<div id="45a638f9" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(수용))</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>폭 <span class="op">=</span> <span class="fl">0.38</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1908,7 +1908,7 @@ Name: 12, dtype: float64</code></pre>
 <figcaption>원본: 『2026 교정통계연보』 109쪽 도표Ⅱ-12</figcaption>
 </figure>
 </div>
-<div id="bcba31dd" class="cell" data-execution_count="32">
+<div id="5c53c8c5" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>최근 <span class="op">=</span> 연령[연령[<span class="st">"연도"</span>] <span class="op">==</span> <span class="dv">2025</span>].iloc[<span class="dv">0</span>]</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>값 <span class="op">=</span> [최근[c] <span class="cf">for</span> c <span class="kw">in</span> 연령대목록]</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>색 <span class="op">=</span> [<span class="st">"#59CAF5"</span>, 보라, 주황, <span class="st">"#4472C1"</span>, <span class="st">"#66CAA6"</span>, <span class="st">"#F68CCB"</span>]</span>
@@ -1988,14 +1988,14 @@ Name: 12, dtype: float64</code></pre>
 <ol type="1">
 <li>죄명 구성비를 연도별 100% 누적 막대그래프로 그려 달라고 요청하세요. 막대 하나의 높이가 100이 되는지 확인합니다.</li>
 </ol>
-<div id="aa2f69b0" class="cell" data-execution_count="33">
+<div id="d03f8bcc" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="dfbfcb65" class="cell" data-execution_count="34">
+<div id="19f08685" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>구성비.set_index(<span class="st">"연도"</span>)[죄명목록].plot(kind<span class="op">=</span><span class="st">"bar"</span>, stacked<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>), rot<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"수형자 죄명 구성비 (2016~2025년)"</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"구성비(%)"</span>)</span>
@@ -2009,7 +2009,7 @@ Name: 12, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="bc0ca678" class="cell" data-execution_count="35">
+<div id="646d1c51" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(구성비[죄명목록].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">round</span>(<span class="dv">1</span>).tolist())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[99.9, 100.2, 100.1, 99.9, 100.1, 99.8, 100.0, 100.0, 99.9, 100.0]</code></pre>
@@ -2020,14 +2020,14 @@ Name: 12, dtype: float64</code></pre>
 <ol start="2" type="1">
 <li>6.3절의 수용률 그래프에 2003년 위치에 세로선을 긋고 “수용면적 기준 변경”이라는 글자를 넣어 달라고 요청하세요.</li>
 </ol>
-<div id="e11ddcc7" class="cell" data-execution_count="36">
+<div id="aeae759d" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="d3b81828" class="cell" data-execution_count="37">
+<div id="e41815b1" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.plot(수용[<span class="st">"연도"</span>], 수용[<span class="st">"수용률"</span>], marker<span class="op">=</span><span class="st">"o"</span>)</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">100</span>, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
@@ -2049,14 +2049,14 @@ Name: 12, dtype: float64</code></pre>
 <ol start="3" type="1">
 <li>시작 연도, 끝 연도, 열 이름 목록을 넣으면 열마다 증가율을 표로 돌려주는 함수를 만들어 달라고 요청하세요(5.6절의 요청문 틀 활용). 2016년, 2025년으로 넣었을 때 6.5절의 증가율과 같은지 확인한 뒤, 2021년과 2025년을 비교해 보세요.</li>
 </ol>
-<div id="070a13ef" class="cell" data-execution_count="38">
+<div id="2e7ffc35" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 함수를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="b5c5dd97" class="cell" data-execution_count="39">
+<div id="35e489e7" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> 기간증가율(표, 시작연도, 끝연도, 열목록):</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    시작 <span class="op">=</span> 표[표[<span class="st">"연도"</span>] <span class="op">==</span> 시작연도].iloc[<span class="dv">0</span>]</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    끝 <span class="op">=</span> 표[표[<span class="st">"연도"</span>] <span class="op">==</span> 끝연도].iloc[<span class="dv">0</span>]</span>
@@ -2199,7 +2199,7 @@ Name: 12, dtype: float64</code></pre>
 <figcaption>원본: 『2026 교정통계연보』 111쪽 도표Ⅱ-14</figcaption>
 </figure>
 </div>
-<div id="4c166721" class="cell" data-execution_count="40">
+<div id="96ddd45b" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
@@ -2207,13 +2207,13 @@ Name: 12, dtype: float64</code></pre>
 정답 보기
 </summary>
 <p><code>circlify</code>라는 도구가 원의 위치와 크기를 계산해 줍니다. Colab에는 설치되어 있지 않아 먼저 설치합니다.</p>
-<div id="867afca0" class="cell" data-execution_count="41">
+<div id="7ff553a2" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">-</span>q circlify</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Note: you may need to restart the kernel to use updated packages.</code></pre>
 </div>
 </div>
-<div id="86d62603" class="cell" data-execution_count="42">
+<div id="ef21cef4" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> circlify</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>최근죄명 <span class="op">=</span> 죄명[죄명[<span class="st">"연도"</span>] <span class="op">==</span> <span class="dv">2025</span>].iloc[<span class="dv">0</span>]</span>

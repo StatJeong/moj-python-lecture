@@ -37,6 +37,8 @@ python tools/make_notebooks.py   # qmd → notebooks/*.ipynb
 quarto render                    # qmd → docs/ (웹사이트)
 ```
 
+3장의 그래프 구조 그림과 층 쌓기 움짤은 `python tools/make_structure_figs.py`로 다시 만듭니다.
+
 반복문 움짤을 새로 만들 때는 예제 코드를 파일로 저장한 뒤 실행합니다.
 
 ```bash

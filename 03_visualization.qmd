@@ -4,7 +4,7 @@ title: "3. 시각화"
 
 [Colab에서 실습 노트북 열기](https://colab.research.google.com/github/StatJeong/moj-python-lecture/blob/main/notebooks/03_visualization.ipynb)
 
-이 장에서는 matplotlib으로 막대그래프, 히스토그램, 산점도를 그리고, seaborn으로 색 구분, 회귀선, 히트맵을 더한 그래프를 그립니다.
+이 장에서는 먼저 그래프가 어떤 부분으로 이루어지고 어떤 순서로 쌓이는지 살펴본 뒤, matplotlib으로 막대그래프, 히스토그램, 산점도를 그리고, seaborn으로 색 구분, 회귀선, 히트맵을 더한 그래프를 그립니다.
 
 ## 3.1 준비
 
@@ -38,7 +38,99 @@ plt.rcParams["axes.unicode_minus"] = False      # 음수 부호 깨짐 방지
 
 Colab 노트북은 장마다 따로 실행되므로, 새 노트북을 열면 데이터를 다시 읽어야 합니다.
 
-## 3.2 막대그래프: 죄명별 인원
+## 3.2 그래프의 구조: 층층이 쌓아 그리기
+
+matplotlib 그래프는 한 번에 완성되지 않습니다. 코드 한 줄마다 그림판 위에 요소를 하나씩 쌓아 올려 만듭니다. 그래프 각 부분의 이름과 쌓는 순서를 알아 두면 처음 보는 그래프 코드도 읽을 수 있습니다.
+
+### 그림판과 그래프 칸
+
+![그래프 각 부분의 이름 (matplotlib 공식 예제 'Anatomy of a figure'를 바탕으로 한국어로 다시 그림)](images/anatomy_ko.png)
+
+| 부분 | 영어 이름 | 만드는 코드 |
+|---|---|---|
+| 그림판 | Figure | `plt.figure()` |
+| 그래프 칸 | Axes | `plt.subplots()` (막대나 선을 그리면 저절로 생기기도 함) |
+| 제목 | title | `plt.title()`, `ax.set_title()` |
+| x축, y축 이름 | xlabel, ylabel | `plt.xlabel()`, `ax.set_xlabel()` |
+| 눈금 | ticks | `plt.xticks()`, `ax.set_xticks()` |
+| 막대, 선, 점 | bar, line, marker | `plt.bar()`, `plt.plot()`, `plt.scatter()` |
+| 범례 | legend | `plt.legend()` |
+| 눈금선 | grid | `plt.grid()` |
+| 테두리 | spines | `ax.spines` |
+
+그림판(Figure)은 종이 한 장이고, 그래프 칸(Axes)은 그 종이 위에 그린 그래프 하나입니다. 그림판 하나에 그래프 칸을 여러 개 둘 수도 있습니다(아래 "칸 여러 개 그리기").
+
+원본 그림: [matplotlib 공식 갤러리 Anatomy of a figure](https://matplotlib.org/stable/gallery/showcase/anatomy.html)
+
+### 한 줄씩 층을 쌓는 순서
+
+![코드 한 줄마다 그래프에 층이 하나씩 쌓이는 과정](images/layers.gif)
+
+```{python}
+죄명별 = 수용자["죄명"].value_counts()
+
+plt.figure(figsize=(6, 4))                                  # 1. 빈 그림판
+plt.bar(죄명별.index, 죄명별.values)                          # 2. 막대 층
+plt.axhline(죄명별.mean(), color="gray", linestyle="--")     # 3. 평균선 층
+plt.title("죄명별 수용자 수")                                  # 4. 제목
+plt.xlabel("죄명")                                           # 5. x축 이름
+plt.ylabel("인원(명)")                                       # 6. y축 이름
+plt.show()                                                  # 7. 화면에 보여주기
+```
+
+Colab에서 칸을 실행하면 모든 줄이 실행된 뒤 완성된 그림 하나만 보입니다. 위 움직이는 그림은 그 사이에 한 줄마다 무엇이 쌓이는지 나눠서 보여준 것입니다.
+
+::: {.callout-tip title="줄을 빼면 그 층만 빠집니다"}
+위 칸에서 평균선 줄(`plt.axhline`) 앞에 `#`을 붙여 주석으로 만들고 다시 실행해 보세요. 평균선만 사라지고 나머지는 그대로입니다. 그래프 코드를 받았을 때 줄을 하나씩 빼 보면 그 줄이 어떤 층을 쌓는지 알 수 있습니다.
+:::
+
+::: {.callout-note title="나중에 쌓은 층이 위에 보입니다"}
+평균선을 막대보다 먼저 그리면 막대에 가려질 수 있습니다. 순서를 바꾸지 않고 앞뒤를 정하려면 `zorder=` 값을 줍니다. 값이 클수록 위에 그려집니다(6장 6.8절에서 막대 위의 흰 점에 사용).
+:::
+
+### 두 가지 쓰는 방식: plt 방식과 ax 방식
+
+matplotlib 코드는 두 가지 모양으로 씁니다. 같은 그림을 그리지만 이름이 조금씩 다릅니다.
+
+| 하는 일 | plt 방식 (지금 그리는 칸에) | ax 방식 (칸을 이름으로 잡고) |
+|---|---|---|
+| 그림판과 칸 만들기 | `plt.figure(figsize=(6, 4))` | `fig, ax = plt.subplots(figsize=(6, 4))` |
+| 막대 | `plt.bar(x, y)` | `ax.bar(x, y)` |
+| 제목 | `plt.title("제목")` | `ax.set_title("제목")` |
+| x축 이름 | `plt.xlabel("이름")` | `ax.set_xlabel("이름")` |
+| y축 범위 | `plt.ylim(0, 5)` | `ax.set_ylim(0, 5)` |
+| 눈금 | `plt.xticks(...)` | `ax.set_xticks(...)` |
+| 범례 | `plt.legend()` | `ax.legend()` |
+
+plt 방식은 짧은 그래프 하나를 그릴 때, ax 방식은 칸이 여러 개이거나 세밀하게 꾸밀 때 씁니다. 6장 6.8절의 연보 도표는 ax 방식으로 그렸습니다. AI가 주는 코드에는 두 방식이 섞여 나오는 경우가 많으니 둘 다 읽을 수 있으면 좋습니다.
+
+### 칸 여러 개 그리기
+
+```{python}
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))   # 그림판 하나에 칸 두 개 (1행 2열)
+
+axes[0].bar(죄명별.index, 죄명별.values)           # 왼쪽 칸
+axes[0].set_title("죄명별 수용자 수")
+
+axes[1].hist(수용자["나이"], bins=[20, 30, 40, 50, 60], edgecolor="white")   # 오른쪽 칸
+axes[1].set_title("나이 분포")
+
+plt.tight_layout()   # 칸 사이 간격을 자동으로 맞춤
+plt.show()
+```
+
+`axes[0]`, `axes[1]`은 1장 리스트처럼 0부터 세는 칸 번호입니다.
+
+::: {.callout-warning title="두 방식의 이름을 섞으면 오류"}
+| 잘못 쓴 코드 | 오류 | 고친 코드 |
+|---|---|---|
+| `ax.title("제목")` | `TypeError: 'Text' object is not callable` | `ax.set_title("제목")` |
+| `plt.set_title("제목")` | `AttributeError: module 'matplotlib.pyplot' has no attribute 'set_title'` | `plt.title("제목")` |
+
+ax 방식은 대부분 이름 앞에 `set_`이 붙습니다(`set_title`, `set_xlabel`, `set_ylim`). 막대·선·점(`bar`, `plot`, `scatter`)과 범례(`legend`)는 두 방식의 이름이 같습니다.
+:::
+
+## 3.3 막대그래프: 죄명별 인원
 
 먼저 그릴 값을 만듭니다.
 
@@ -71,7 +163,7 @@ plt.show()
 `value_counts()`는 많은 순서로 정렬합니다. 이름 순으로 그리려면 `.sort_index()`를, 원하는 순서가 있으면 `.reindex(["S1", "S2", "S3", "S4"])`처럼 순서를 직접 정합니다.
 :::
 
-## 3.3 히스토그램: 나이 분포
+## 3.4 히스토그램: 나이 분포
 
 숫자 하나의 분포를 볼 때는 히스토그램을 씁니다. `bins`로 구간을 정합니다.
 
@@ -84,7 +176,7 @@ plt.ylabel("인원(명)")
 plt.show()
 ```
 
-## 3.4 산점도: 상담횟수와 징벌횟수
+## 3.5 산점도: 상담횟수와 징벌횟수
 
 숫자 두 개의 관계를 볼 때는 산점도를 씁니다.
 
@@ -101,7 +193,7 @@ plt.show()
 수용자는 10명인데 점은 8개만 보입니다. 1007번은 상담횟수가 비어 있어 빠졌고, 1001번과 1009번은 둘 다 (2, 2)라서 점이 겹쳤습니다. 그래프는 빈칸을 아무 말 없이 빼고 그리고, 같은 위치의 점은 하나로 보입니다. 그래프만 보고 판단하기 전에 데이터를 함께 확인합니다.
 :::
 
-## 3.5 시설별 수용률
+## 3.6 시설별 수용률
 
 ```{python}
 시설현황["수용률"] = (시설현황["현원"] / 시설현황["정원"] * 100).round(1)
@@ -114,7 +206,7 @@ plt.ylabel("수용률(%)")
 plt.show()
 ```
 
-## 3.6 집계 결과를 바로 그리기
+## 3.7 집계 결과를 바로 그리기
 
 `groupby()`로 집계한 결과에 `.plot()`을 붙이면 바로 그래프가 됩니다.
 
@@ -125,7 +217,7 @@ plt.ylabel("징벌횟수")
 plt.show()
 ```
 
-## 3.7 seaborn으로 그래프 꾸미기
+## 3.8 seaborn으로 그래프 꾸미기
 
 seaborn은 matplotlib 위에서 동작하는 그래프 도구입니다. 표(DataFrame)와 열 이름만 알려주면 색 구분, 범례, 회귀선 같은 것을 알아서 그려 줍니다. Colab에는 이미 설치되어 있습니다.
 
@@ -141,6 +233,22 @@ sns.set_theme(style="whitegrid", font="NanumGothic", rc={"axes.unicode_minus": F
 
 seaborn 함수는 모두 `data=표, x="열 이름", y="열 이름"` 형태로 씁니다.
 
+### seaborn은 matplotlib 위에 쌓인 층
+
+![seaborn과 matplotlib의 관계](images/seaborn_stack.png)
+
+seaborn은 그림을 직접 그리지 않습니다. 표를 받아 개수, 평균, 회귀선 같은 계산을 하고 색과 범례를 정한 다음, 실제 그리기는 matplotlib에 맡깁니다. 그래서 seaborn으로 그린 그래프 위에 3.2절의 matplotlib 명령(`plt.title`, `plt.ylabel`, `plt.axhline` 등)으로 층을 더 쌓을 수 있습니다. 아래 그래프들도 모두 seaborn이 그린 층 위에 matplotlib으로 제목과 축 이름을 더한 것입니다.
+
+seaborn 함수는 하는 일에 따라 세 묶음으로 나뉩니다.
+
+![seaborn 함수 구성](images/seaborn_functions.png)
+
+자세한 설명: [seaborn 공식 문서 Overview of seaborn plotting functions](https://seaborn.pydata.org/tutorial/function_overview.html)
+
+::: {.callout-tip title="seaborn 함수는 그린 칸을 돌려줍니다"}
+`ax = sns.countplot(data=수용자, x="죄명")`처럼 결과를 받아 두면, 3.2절의 ax 방식(`ax.set_title(...)`, `ax.set_ylabel(...)`)으로 그 칸에 층을 이어서 쌓을 수 있습니다.
+:::
+
 ### 그룹을 색으로 나눈 막대: countplot
 
 ```{python}
@@ -152,7 +260,7 @@ plt.yticks([0, 1, 2])
 plt.show()
 ```
 
-`hue="시설"`이 시설마다 색을 나누고 범례를 붙입니다. 3.2절처럼 `value_counts()`로 미리 세지 않아도 seaborn이 개수를 셉니다.
+`hue="시설"`이 시설마다 색을 나누고 범례를 붙입니다. 3.3절처럼 `value_counts()`로 미리 세지 않아도 seaborn이 개수를 셉니다. `sns.countplot()`이 막대 층을 그리고, 그 위에 `plt.title()`, `plt.ylabel()`, `plt.yticks()`가 matplotlib 층을 더 쌓았습니다.
 
 ### 상자그림과 점: boxplot + stripplot
 
@@ -210,7 +318,14 @@ plt.show()
 상담횟수와 징벌횟수의 상관계수가 -0.92로 아주 강하게 나오지만, 강의용으로 만든 10명짜리 가상 자료라서 그렇습니다. 사람 수가 적으면 상관계수가 우연히 크게 나오기 쉽습니다. 상관이 크다고 한쪽이 다른 쪽의 원인이라는 뜻도 아닙니다.
 :::
 
-## 3.8 그래프 저장하기
+::: {.callout-tip title="어떤 그래프를 그릴 수 있는지 둘러보기"}
+- matplotlib 갤러리: <https://matplotlib.org/stable/gallery/index.html>
+- seaborn 갤러리: <https://seaborn.pydata.org/examples/index.html>
+
+마음에 드는 그림을 누르면 그 그림을 만든 코드가 함께 나옵니다. 열 이름을 우리 데이터에 맞게 바꾸거나, 그림 주소를 AI에게 주고 "이 예제처럼 수용자 데이터로 그려줘"라고 요청하면 됩니다.
+:::
+
+## 3.9 그래프 저장하기
 
 `plt.show()` 앞에 `plt.savefig()`를 넣으면 그림 파일로 저장됩니다. 보고서에 넣을 때는 `dpi`를 150 이상으로 합니다.
 
@@ -230,7 +345,7 @@ plt.show()
 seaborn은 matplotlib 위에서 그리므로 `plt.savefig()`를 그대로 씁니다.
 :::
 
-## 3.9 연습문제
+## 3.10 연습문제
 
 1. 경비처우급별 인원을 막대그래프로 그리세요.
 

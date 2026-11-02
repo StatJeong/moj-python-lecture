@@ -243,7 +243,7 @@ print("60세 이상 수형자 증가율:", 증가율(연령["60세이상"].iloc[
 
 ## 6.7 seaborn으로 한눈에 보기
 
-3장 3.7절의 seaborn으로 연보 자료를 한 장의 그림에 담아 봅니다.
+3장 3.8절의 seaborn으로 연보 자료를 한 장의 그림에 담아 봅니다.
 
 ```{python}
 import seaborn as sns
