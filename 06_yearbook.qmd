@@ -313,7 +313,156 @@ plt.show()
 엑셀 보고서의 표는 보통 연도가 행, 항목이 열로 펼쳐져 있습니다(옆으로 펼친 표). seaborn처럼 `hue=`로 나눠 그리는 도구는 긴 표를 원합니다. 그래프가 원하는 대로 안 나오면 표 모양부터 확인합니다.
 :::
 
-## 6.8 AI와 함께 해보기
+## 6.8 연보 도표 따라 그리기
+
+연보에는 표마다 도표가 함께 실려 있습니다. 같은 자료로 연보와 비슷한 모양의 그래프를 만들어 봅니다. 보고서에 넣을 그래프를 기관 양식에 맞춰 그릴 때 쓰는 방법들입니다.
+
+::: {.callout-note title="원본 도표의 출처"}
+이 절의 원본 도표 그림은 『2026 교정통계연보』 39쪽, 109쪽, 111쪽, 121쪽에서 전재하였습니다.
+:::
+
+### 준비: 색과 공통 모양을 함수로
+
+```{python}
+import numpy as np
+
+sns.set_theme(style="white", font="NanumGothic", rc={"axes.unicode_minus": False})
+
+# 연보 도표에서 뽑은 색
+보라, 진보라, 주황, 회색, 하늘 = "#8864B9", "#633B9F", "#F68624", "#9BA1A2", "#4FC3F7"
+
+def 연보스타일(ax, 제목, 단위="명"):
+    ax.spines[["top", "right", "left"]].set_visible(False)   # 위, 오른쪽, 왼쪽 테두리 지우기
+    ax.grid(axis="y", linestyle=":", color="gray")            # 가로 점선 눈금선
+    ax.set_axisbelow(True)                                    # 눈금선을 막대 뒤로
+    ax.tick_params(axis="y", length=0)
+    ax.yaxis.set_major_formatter("{x:,.0f}")                  # 세 자리마다 쉼표
+    ax.set_title(제목, loc="left", fontsize=13, pad=28)
+    ax.text(1.0, 1.1, f"(단위: {단위})", transform=ax.transAxes, ha="right", va="bottom", fontsize=9)
+```
+
+그래프마다 반복되는 모양(테두리, 점선 눈금, 제목 위치, 단위 표시)을 함수 하나로 묶었습니다. 2장 2.12절처럼 함수로 만들어 두면 모든 그래프를 같은 양식으로 맞출 수 있습니다.
+
+`numpy`(`np`)는 숫자 계산 도구입니다. `np.arange(10)`은 0부터 9까지의 숫자 묶음을 만들고, 이 묶음에서 0.15를 빼면 모든 숫자에서 한꺼번에 빠집니다. 막대 두 개를 나란히 놓을 위치를 계산할 때 씁니다.
+
+### 도표Ⅰ-23: 막대 위에 숫자 적기
+
+![원본: 『2026 교정통계연보』 39쪽 도표Ⅰ-23](images/yearbook/fig_I-23.png)
+
+```{python}
+x = np.arange(len(직원))   # 연도 위치 0, 1, ..., 9
+폭 = 0.3
+
+fig, ax = plt.subplots(figsize=(9, 4))
+남 = ax.bar(x - 폭 / 2, 직원["남성현원"], 폭, color=진보라, label="남성")
+여 = ax.bar(x + 폭 / 2, 직원["여성현원"], 폭, color=회색, label="여성")
+ax.scatter(x - 폭 / 2, 직원["남성현원"] - 300, s=10, color="white", zorder=3)   # 막대 끝의 흰 점
+ax.scatter(x + 폭 / 2, 직원["여성현원"] - 300, s=10, color="white", zorder=3)
+ax.bar_label(남, labels=[f"{v:,}" for v in 직원["남성현원"]], padding=4, fontsize=8)
+ax.bar_label(여, labels=[f"{v:,}" for v in 직원["여성현원"]], padding=4, fontsize=8)
+ax.set_xticks(x, 직원["연도"])
+ax.set_ylim(0, 17000)
+연보스타일(ax, "교정공무원 남성·여성 연도별 인원 현황")
+ax.legend(loc="lower right", bbox_to_anchor=(1, 1.0), ncol=2, frameon=False, fontsize=9)
+plt.show()
+```
+
+| 코드 | 하는 일 |
+|---|---|
+| `fig, ax = plt.subplots(...)` | 그림판(`fig`)과 그 안의 그래프 칸(`ax`)을 함께 만듦. 칸을 이름으로 잡아 두면 세밀하게 고치기 쉬움 |
+| `x - 폭 / 2`, `x + 폭 / 2` | 두 막대를 연도 위치의 왼쪽과 오른쪽에 나란히 놓음 |
+| `ax.bar_label(막대, labels=...)` | 막대 끝에 숫자를 적음. `f"{v:,}"`는 세 자리마다 쉼표 |
+| `zorder=3` | 흰 점을 막대보다 앞에 그림 |
+
+::: {.callout-warning title="원본은 세로축을 중간에서 끊었습니다"}
+원본 도표Ⅰ-23의 세로축은 2,000 다음이 바로 10,000입니다. 남성 막대의 아래쪽을 잘라 그렸기 때문에 남성(15,029명)과 여성(1,725명)의 차이(약 8.7배)가 실제보다 작아 보입니다. 위 그래프는 0부터 끊지 않고 그렸습니다. 축을 끊으면 그래프가 보기 좋아지는 대신 크기 비교가 틀어지므로, 보고서에서 축을 끊을 때는 끊었다는 표시를 분명히 해야 합니다.
+:::
+
+### 도표Ⅱ-25: 막대와 꺾은선을 한 그래프에
+
+![원본: 『2026 교정통계연보』 121쪽 도표Ⅱ-25](images/yearbook/fig_II-25.png)
+
+인원(명)과 수용률(%)은 단위가 달라 세로축 하나로는 함께 그릴 수 없습니다. `twinx()`로 같은 가로축을 쓰는 두 번째 세로축을 만들어 꺾은선을 그립니다.
+
+```{python}
+x = np.arange(len(수용))
+폭 = 0.38
+
+fig, ax1 = plt.subplots(figsize=(11, 5))
+ax1.bar(x - 폭 / 2, 수용["수용정원"], 폭, color=보라, label="수용정원(명)")
+ax1.bar(x + 폭 / 2, 수용["1일평균수용인원"], 폭, color=주황, label="수용인원(명)")
+ax1.set_ylim(0, 125000)                 # 막대를 아래쪽에 두어 위에 꺾은선 자리를 만듦
+ax1.set_yticks(range(0, 80001, 10000))
+
+ax2 = ax1.twinx()                       # 두 번째 세로축
+ax2.plot(x, 수용["수용률"], color=하늘, marker="o", markersize=4, label="수용률(%)")
+for xi, yi in zip(x, 수용["수용률"]):
+    ax2.annotate(f"{yi:.1f}", (xi, yi), textcoords="offset points", xytext=(0, 6),
+                 ha="center", fontsize=7)
+ax2.set_ylim(28, 142)                   # 꺾은선을 위쪽에 둠
+ax2.axis("off")                         # 두 번째 세로축의 눈금은 숨김 (원본처럼)
+
+ax1.set_xticks(x, [str(y) if y == 2000 else str(y)[2:] for y in 수용["연도"]], fontsize=8)
+연보스타일(ax1, "연도별 교정시설 수용인원 현황(1991년~2025년)", 단위="명, %")
+
+h1, l1 = ax1.get_legend_handles_labels()
+h2, l2 = ax2.get_legend_handles_labels()
+ax1.legend(h1 + h2, l1 + l2, loc="lower right", bbox_to_anchor=(1, 1.0), ncol=3, frameon=False, fontsize=9)
+plt.show()
+```
+
+| 코드 | 하는 일 |
+|---|---|
+| `ax2 = ax1.twinx()` | 가로축은 같고 세로축이 다른 두 번째 그래프 칸 |
+| `ax1.set_ylim(0, 125000)` | 막대 칸의 위쪽을 비워 둠. 막대가 아래 60%쯤만 차지함 |
+| `ax2.set_ylim(28, 142)` | 수용률이 그래프 위쪽에 오도록 범위를 정함 |
+| `ax2.annotate(...)` | 점마다 수용률 값을 적음 |
+| `str(y)[2:]` | 1991을 "91"처럼 뒤 두 자리만 표시 (문자열 자르기, 1장 리스트 자르기와 같은 방식) |
+| `get_legend_handles_labels()` | 두 칸의 범례를 하나로 합치기 위해 각 칸의 범례 항목을 꺼냄 |
+
+::: {.callout-tip title="두 세로축 그래프를 읽을 때"}
+두 세로축 그래프는 범위를 어떻게 정하느냐에 따라 두 선이 겹치거나 떨어져 보입니다. 원본처럼 오른쪽 눈금을 숨기고 점마다 값을 적어 두면, 읽는 사람이 눈금을 잘못 읽을 일이 줄어듭니다.
+:::
+
+### 도표Ⅱ-12: 가운데에 합계가 있는 도넛 그래프
+
+![원본: 『2026 교정통계연보』 109쪽 도표Ⅱ-12](images/yearbook/fig_II-12.png)
+
+```{python}
+최근 = 연령[연령["연도"] == 2025].iloc[0]
+값 = [최근[c] for c in 연령대목록]
+색 = ["#59CAF5", 보라, 주황, "#4472C1", "#66CAA6", "#F68CCB"]
+
+fig, ax = plt.subplots(figsize=(8, 6))
+조각, _ = ax.pie(값, colors=색, startangle=90, counterclock=False,
+                 wedgeprops={"width": 0.45, "edgecolor": "white"})
+ax.text(0, 0, f"수형자\n{최근['계']:,}명", ha="center", va="center", fontsize=14)
+
+for 한조각, 이름, v, c in zip(조각, 연령대목록, 값, 색):
+    각도 = np.radians((한조각.theta1 + 한조각.theta2) / 2)   # 조각 가운데 방향
+    cx, cy = np.cos(각도), np.sin(각도)
+    오른쪽 = cx >= 0
+    ax.annotate(f"{v / 최근['계'] * 100:.1f}%\n{이름} {v:,}명",
+                xy=(cx * 0.8, cy * 0.8), xytext=(1.5 if 오른쪽 else -1.5, cy * 1.25),
+                ha="left" if 오른쪽 else "right", va="center", color=c, fontsize=11,
+                arrowprops={"arrowstyle": "-", "color": c})
+
+ax.set_title("수형자 연령별 인원 구성비(2025년)", loc="left", fontsize=13)
+plt.show()
+```
+
+| 코드 | 하는 일 |
+|---|---|
+| `ax.pie(값, ...)` | 원그래프. `startangle=90, counterclock=False`는 12시 방향에서 시계 방향으로 그림 |
+| `wedgeprops={"width": 0.45}` | 조각의 두께를 줄여 가운데가 빈 도넛 모양으로 만듦 |
+| `ax.text(0, 0, ...)` | 가운데에 합계를 적음 |
+| `annotate(..., arrowprops=...)` | 조각 밖에 설명을 적고 선으로 이음. 조각 가운데 방향을 각도로 계산해 오른쪽 조각은 오른쪽에, 왼쪽 조각은 왼쪽에 적음 |
+
+::: {.callout-note title="도넛 그래프와 막대그래프"}
+도넛(원) 그래프는 전체에서 차지하는 몫을 보여주기 좋지만, 30대(20.9%), 40대(21.7%), 50대(21.8%)처럼 비슷한 조각은 눈으로 크기를 구분하기 어렵습니다. 그래서 원본처럼 조각마다 숫자를 함께 적습니다. 항목끼리의 크기 비교가 목적이면 막대그래프가 더 정확하게 읽힙니다.
+:::
+
+## 6.9 AI와 함께 해보기
 
 5장의 방법으로 AI에게 코드를 받아 해결하고, 받은 코드를 한 줄씩 묻고 결과를 확인하세요. 정답 보기에는 확인용 코드가 있습니다.
 
@@ -400,3 +549,50 @@ def 기간증가율(표, 시작연도, 끝연도, 열목록):
 | 2025년 교정공무원 1인당 수용인원 | 3.80명 | 6.4절 |
 | 2016년 대비 마약류 수형자 증가율 | 121.6% | 6.5절 |
 | 2025년 60세 이상 수형자 비중 | 18.1% | 6.6절 |
+
+5. 연보 111쪽 도표Ⅱ-14처럼 2025년 죄명별 구성비를 크기가 다른 원(버블)으로 그려 달라고 요청하세요. 원본 그림을 설명하거나, AI가 그림을 읽을 수 있으면 캡처를 함께 주면 됩니다. 원을 겹치지 않게 배치하는 부분은 직접 짜기 어려우므로 AI가 어떤 도구를 쓰는지, 그 도구를 설치하는 줄이 무엇인지 물어보세요.
+
+![원본: 『2026 교정통계연보』 111쪽 도표Ⅱ-14](images/yearbook/fig_II-14.png)
+
+```{python}
+#| eval: false
+# AI에게 받은 코드를 붙여 넣어 실행해 보세요
+```
+
+<details>
+<summary>정답 보기</summary>
+
+`circlify`라는 도구가 원의 위치와 크기를 계산해 줍니다. Colab에는 설치되어 있지 않아 먼저 설치합니다.
+
+```{python}
+%pip install -q circlify
+```
+
+```{python}
+import circlify
+
+최근죄명 = 죄명[죄명["연도"] == 2025].iloc[0]
+표시이름 = {"폭력행위등처벌법": "폭력행위 등", "사기횡령": "사기·횡령"}
+자료 = [{"id": c, "datum": 최근죄명[c] / 최근죄명["계"] * 100} for c in 죄명목록]
+원들 = circlify.circlify(자료, show_enclosure=False)
+
+팔레트 = dict(zip(죄명목록, ["#FBBF5E", "#6DC6F0", "#F25C19", "#F68624", "#A6E0CA",
+                          "#4472C1", "#C455B4", "#7A8B94", "#66CAA6"]))
+
+fig, ax = plt.subplots(figsize=(7, 7))
+ax.axis("off")
+끝 = max(max(abs(c.x) + c.r, abs(c.y) + c.r) for c in 원들)
+ax.set_xlim(-끝, 끝)
+ax.set_ylim(-끝, 끝)
+for c in 원들:
+    이름, 비율 = c.ex["id"], c.ex["datum"]
+    ax.add_patch(plt.Circle((c.x, c.y), c.r * 0.95, color=팔레트[이름]))
+    ax.text(c.x, c.y, f"{표시이름.get(이름, 이름)}\n{비율:.1f}%", ha="center", va="center",
+            color="white", fontsize=8 + c.r * 22)
+ax.set_title("수형자 죄명별 구성비(2025년)", loc="left", fontsize=13)
+plt.show()
+```
+
+원의 넓이가 구성비에 비례합니다. 원의 배치는 계산할 때마다 같지만 원본과는 다를 수 있습니다.
+
+</details>
