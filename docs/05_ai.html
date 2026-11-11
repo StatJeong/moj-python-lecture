@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>ChatGPT, Claude 같은 AI는 분석 코드를 빠르게 써 줍니다. 이 장에서는 AI에게 원하는 코드를 받아내는 요청 방법과, 받은 코드가 어떻게 작동하는지 묻고 결과를 검증하는 방법을 연습합니다. AI가 데이터 분석 코드를 쓰고 실행할 때 주로 쓰는 언어가 파이썬이라서, 1~4장에서 익힌 문법이 AI가 준 코드를 읽는 데 그대로 쓰입니다.</p>
 <section id="준비" class="level2">
 <h2 class="anchored" data-anchor-id="준비">5.1 준비</h2>
-<div id="e63cc366" class="cell" data-execution_count="1">
+<div id="afd65e2e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>주소 <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/StatJeong/moj-python-lecture/main/data/"</span></span>
@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="데이터-구조를-알려주는-방법" class="level2">
 <h2 class="anchored" data-anchor-id="데이터-구조를-알려주는-방법">5.3 데이터 구조를 알려주는 방법</h2>
 <p>AI에게는 데이터 전체가 아니라 구조만 알려주면 충분합니다.</p>
-<div id="f68aaa9a" class="cell" data-execution_count="2">
+<div id="c4e85725" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자.dtypes)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>수용번호        int64
@@ -344,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 dtype: object</code></pre>
 </div>
 </div>
-<div id="03fa2033" class="cell" data-execution_count="3">
+<div id="a02afcae" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자.head(<span class="dv">3</span>).to_string())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   수용번호    시설 성별  나이  죄명  형기_개월         입소일 경비처우급 직업훈련  상담횟수  징벌횟수                  최근상담메모
@@ -389,7 +389,7 @@ dtype: object</code></pre>
 <li>“같은 결과를 다른 방법으로도 낼 수 있나요?”</li>
 </ul>
 <p>예를 들어 위 요청문에 AI가 다음 코드를 줬다고 합시다.</p>
-<div id="a6e6ef32" class="cell" data-execution_count="4">
+<div id="f72e9658" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>결과 <span class="op">=</span> 수용자.groupby(<span class="st">"경비처우급"</span>)[<span class="st">"징벌횟수"</span>].mean()   <span class="co"># 경비처우급별 징벌횟수 평균</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>결과</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -402,7 +402,7 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </div>
 </div>
 <p>결과 중 하나를 직접 계산해 맞는지 확인합니다. S4인 수용자만 골라 평균을 내 봅니다.</p>
-<div id="6d30d1cc" class="cell" data-execution_count="5">
+<div id="5e0816c7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>S4 <span class="op">=</span> 수용자[수용자[<span class="st">"경비처우급"</span>] <span class="op">==</span> <span class="st">"S4"</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(S4[[<span class="st">"수용번호"</span>, <span class="st">"징벌횟수"</span>]])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(S4[<span class="st">"징벌횟수"</span>].mean())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
@@ -431,7 +431,7 @@ Name: 징벌횟수, dtype: float64</code></pre>
 <p>아래 예들은 모두 오류 없이 실행됩니다. 그래서 더 놓치기 쉽습니다.</p>
 <section id="결측치가-조용히-빠지는-평균" class="level3">
 <h3 class="anchored" data-anchor-id="결측치가-조용히-빠지는-평균">결측치가 조용히 빠지는 평균</h3>
-<div id="dc621937" class="cell" data-execution_count="6">
+<div id="b91643a2" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자[<span class="st">"상담횟수"</span>].mean())                    <span class="co"># 값이 있는 9명으로 나눔</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자[<span class="st">"상담횟수"</span>].<span class="bu">sum</span>() <span class="op">/</span> <span class="bu">len</span>(수용자))       <span class="co"># 10명으로 나눔</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -443,7 +443,7 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </section>
 <section id="비율의-평균" class="level3">
 <h3 class="anchored" data-anchor-id="비율의-평균">비율의 평균</h3>
-<div id="a135cfbd" class="cell" data-execution_count="7">
+<div id="f3c79d19" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>시설현황[<span class="st">"수용률"</span>] <span class="op">=</span> 시설현황[<span class="st">"현원"</span>] <span class="op">/</span> 시설현황[<span class="st">"정원"</span>] <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(시설현황[<span class="st">"수용률"</span>].mean())                                <span class="co"># 시설별 수용률의 단순 평균</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(시설현황[<span class="st">"현원"</span>].<span class="bu">sum</span>() <span class="op">/</span> 시설현황[<span class="st">"정원"</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>)    <span class="co"># 전체 현원 / 전체 정원</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
@@ -456,7 +456,7 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </section>
 <section id="개월을-30일로-바꾸는-날짜-계산" class="level3">
 <h3 class="anchored" data-anchor-id="개월을-30일로-바꾸는-날짜-계산">개월을 30일로 바꾸는 날짜 계산</h3>
-<div id="4eb0d287" class="cell" data-execution_count="8">
+<div id="fc5354ff" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"입소일"</span>] <span class="op">=</span> pd.to_datetime(수용자[<span class="st">"입소일"</span>])</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 형기 1개월을 30일로 바꿔 더하는 방법</span></span>
@@ -585,14 +585,14 @@ Name: 징벌횟수, dtype: float64</code></pre>
 <ol type="1">
 <li>기준일 2026년 12월 1일로부터 6개월 이내(2027년 6월 1일 이전)에 출소 예정인 수용자를 찾으세요.</li>
 </ol>
-<div id="2e279de1" class="cell" data-execution_count="9">
+<div id="e256bad1" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="fc39c9f9" class="cell" data-execution_count="10">
+<div id="86f50591" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>출소예정일 <span class="op">=</span> []</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 입소일, 형기 <span class="kw">in</span> <span class="bu">zip</span>(수용자[<span class="st">"입소일"</span>], 수용자[<span class="st">"형기_개월"</span>]):</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    출소예정일.append(입소일 <span class="op">+</span> pd.DateOffset(months<span class="op">=</span><span class="bu">int</span>(형기)))</span>
@@ -643,14 +643,14 @@ Name: 징벌횟수, dtype: float64</code></pre>
 <ol start="2" type="1">
 <li>시설별로 인원, 평균 형기(개월), 징벌을 한 번 이상 받은 사람의 비율을 한 표로 만드세요.</li>
 </ol>
-<div id="aa9c19c3" class="cell" data-execution_count="11">
+<div id="c995dddd" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="1c08514a" class="cell" data-execution_count="12">
+<div id="99793838" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>수용자[<span class="st">"징벌여부"</span>] <span class="op">=</span> (수용자[<span class="st">"징벌횟수"</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>수용자.groupby(<span class="st">"시설"</span>).agg(</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    인원<span class="op">=</span>(<span class="st">"수용번호"</span>, <span class="st">"count"</span>),</span>
@@ -705,7 +705,7 @@ Name: 징벌횟수, dtype: float64</code></pre>
 <ol start="3" type="1">
 <li>최근상담메모를 “생활”, “심리”, “진로” 중 하나로 분류하게 해 보세요. 아래 코드로 메모를 출력한 뒤, 그 내용을 AI에게 주고 분류를 요청합니다.</li>
 </ol>
-<div id="d6aa972e" class="cell" data-execution_count="13">
+<div id="41d9a3ce" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 번호, 메모 <span class="kw">in</span> <span class="bu">zip</span>(수용자[<span class="st">"수용번호"</span>], 수용자[<span class="st">"최근상담메모"</span>]):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(번호, 메모)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -726,14 +726,14 @@ Name: 징벌횟수, dtype: float64</code></pre>
 <li><p>3.5절의 시설별 수용률 표를 AI에게 주고 세 문장짜리 보고서 문단을 써 달라고 요청하세요. 받은 문장에 나온 숫자가 표의 숫자와 같은지 하나씩 확인합니다.</p></li>
 <li><p>5.6절의 요청문으로 <code>시설별출소예정</code> 함수를 받아 실행하세요. A교도소에서 1001, 1006, 1009번 3명이 나오는지 확인한 뒤, B교도소와 C교도소에도 적용해 보세요.</p></li>
 </ol>
-<div id="f0a41486" class="cell" data-execution_count="14">
+<div id="02189ad1" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 함수를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="418d42e0" class="cell" data-execution_count="15">
+<div id="0e258c5b" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> 시설별출소예정(표, 시설명, 기준일<span class="op">=</span><span class="st">"2026-12-01"</span>, 개월<span class="op">=</span><span class="dv">6</span>):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    출소예정일 <span class="op">=</span> []</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> 입소일, 형기 <span class="kw">in</span> <span class="bu">zip</span>(pd.to_datetime(표[<span class="st">"입소일"</span>]), 표[<span class="st">"형기_개월"</span>]):</span>
@@ -780,7 +780,7 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="0a651369" class="cell" data-execution_count="16">
+<div id="af87a784" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>시설별출소예정(수용자, <span class="st">"C교도소"</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
@@ -806,6 +806,96 @@ Name: 징벌횟수, dtype: float64</code></pre>
 </div>
 </div>
 </div>
+</details>
+<ol start="6" type="1">
+<li>4.2절에서 오류 세 개를 찾은 <code>inmates_check.csv</code>를 AI에게 설명하고, 잘못된 값을 처리하는 코드를 요청하세요. 처리한 뒤 <code>describe()</code>를 다시 실행해 최솟값과 최댓값이 정상인지 확인합니다. AI가 값을 빈칸으로 바꾸는지, 다른 값으로 고치는지, 행을 빼는지 묻고, 방법마다 무엇이 달라지는지도 물어보세요.</li>
+</ol>
+<div id="4d5e1e7e" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI에게 받은 코드를 붙여 넣어 실행해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<details>
+<summary>
+정답 보기
+</summary>
+<p>원래 값을 알 수 없으므로 잘못된 값을 빈칸(NaN)으로 바꾸는 방법입니다.</p>
+<div id="c9f1144b" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>점검 <span class="op">=</span> pd.read_csv(주소 <span class="op">+</span> <span class="st">"inmates_check.csv"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>점검.loc[점검[<span class="st">"나이"</span>] <span class="op">&gt;</span> <span class="dv">100</span>, <span class="st">"나이"</span>] <span class="op">=</span> np.nan</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>점검[<span class="st">"형기_개월"</span>] <span class="op">=</span> 점검[<span class="st">"형기_개월"</span>].replace(<span class="dv">999</span>, np.nan)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>점검.loc[점검[<span class="st">"상담횟수"</span>] <span class="op">&lt;</span> <span class="dv">0</span>, <span class="st">"상담횟수"</span>] <span class="op">=</span> np.nan</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>점검[[<span class="st">"나이"</span>, <span class="st">"형기_개월"</span>, <span class="st">"상담횟수"</span>]].describe().<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">나이</th>
+<th data-quarto-table-cell-role="th">형기_개월</th>
+<th data-quarto-table-cell-role="th">상담횟수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>9.00</td>
+<td>9.00</td>
+<td>8.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">mean</th>
+<td>38.56</td>
+<td>31.33</td>
+<td>4.50</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">std</th>
+<td>11.54</td>
+<td>16.76</td>
+<td>2.45</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">min</th>
+<td>24.00</td>
+<td>10.00</td>
+<td>1.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">25%</th>
+<td>31.00</td>
+<td>20.00</td>
+<td>2.75</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">50%</th>
+<td>37.00</td>
+<td>30.00</td>
+<td>4.50</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">75%</th>
+<td>45.00</td>
+<td>42.00</td>
+<td>6.25</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">max</th>
+<td>58.00</td>
+<td>60.00</td>
+<td>8.00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><code>count</code>가 줄어든 대신 최솟값과 최댓값이 정상 범위로 돌아옵니다. 280을 28로 고치는 것처럼 ’원래 값이 이것이었을 것’이라고 AI가 추측해 고치는 코드를 주면 그대로 쓰지 않습니다. 원래 값은 원자료를 확인해야 알 수 있습니다.</p>
 </details>
 </section>
 <section id="실제-공개-데이터로-해보기" class="level2">
