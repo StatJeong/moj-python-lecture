@@ -39,6 +39,7 @@ quarto render                    # qmd → docs/ (웹사이트)
 
 3장의 그래프 구조 그림과 층 쌓기 움짤은 `python tools/make_structure_figs.py`로 다시 만듭니다.
 4장의 t분포, 잔차, 로지스틱 비교, 시그모이드 그림은 `python tools/make_stats_figs.py`로 다시 만듭니다.
+5장의 흐름 그림은 `python tools/make_ai_figs.py`로 다시 만듭니다.
 
 반복문 움짤을 새로 만들 때는 예제 코드를 파일로 저장한 뒤 실행합니다.
 

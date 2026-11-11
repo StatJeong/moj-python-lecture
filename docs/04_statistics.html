@@ -351,10 +351,10 @@ window.Quarto = {
 <section id="준비" class="level2">
 <h2 class="anchored" data-anchor-id="준비">4.1 준비</h2>
 <p>이 장에서도 그래프를 그리므로 3장처럼 한글 글꼴을 먼저 설치합니다.</p>
-<div id="94c0a226" class="cell" data-execution_count="1">
+<div id="4b310788" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>apt<span class="op">-</span>get <span class="op">-</span>qq install <span class="op">-</span>y fonts<span class="op">-</span>nanum <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="8bc56ac4" class="cell" data-execution_count="2">
+<div id="45b45d08" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -373,7 +373,7 @@ window.Quarto = {
 </section>
 <section id="기술통계" class="level2">
 <h2 class="anchored" data-anchor-id="기술통계">4.2 기술통계</h2>
-<div id="cec33313" class="cell" data-execution_count="3">
+<div id="90111850" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>수용자[[<span class="st">"나이"</span>, <span class="st">"형기_개월"</span>, <span class="st">"상담횟수"</span>, <span class="st">"징벌횟수"</span>]].describe().<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -479,7 +479,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>평균과 중앙값을 따로 구할 수도 있습니다.</p>
-<div id="e43f9d26" class="cell" data-execution_count="4">
+<div id="91cb8e6e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자[<span class="st">"나이"</span>].mean())</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(수용자[<span class="st">"나이"</span>].median())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -490,7 +490,7 @@ window.Quarto = {
 <section id="같은-10명-다른-파일" class="level3">
 <h3 class="anchored" data-anchor-id="같은-10명-다른-파일">같은 10명, 다른 파일</h3>
 <p>아래 <code>inmates_check.csv</code>는 위와 같은 10명의 자료를 따로 입력한 파일입니다. 같은 방법으로 기술통계를 봅니다.</p>
-<div id="c20c7e7f" class="cell" data-execution_count="5">
+<div id="4085958b" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>점검 <span class="op">=</span> pd.read_csv(주소 <span class="op">+</span> <span class="st">"inmates_check.csv"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>점검[[<span class="st">"나이"</span>, <span class="st">"형기_개월"</span>, <span class="st">"상담횟수"</span>, <span class="st">"징벌횟수"</span>]].describe().<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -598,7 +598,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>잘못된 값을 가진 행은 2장의 조건 고르기로 찾을 수 있습니다.</p>
-<div id="21ce79c9" class="cell" data-execution_count="6">
+<div id="fd5d1118" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(점검[점검[<span class="st">"나이"</span>] <span class="op">&gt;</span> <span class="dv">100</span>][[<span class="st">"수용번호"</span>, <span class="st">"나이"</span>]])</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(점검[점검[<span class="st">"형기_개월"</span>] <span class="op">&gt;</span> <span class="dv">900</span>][[<span class="st">"수용번호"</span>, <span class="st">"형기_개월"</span>]])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(점검[점검[<span class="st">"상담횟수"</span>] <span class="op">&lt;</span> <span class="dv">0</span>][[<span class="st">"수용번호"</span>, <span class="st">"상담횟수"</span>]])</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
@@ -679,7 +679,7 @@ window.Quarto = {
 <section id="교차표" class="level2">
 <h2 class="anchored" data-anchor-id="교차표">4.3 교차표</h2>
 <p>범주형 변수 두 개의 관계는 교차표로 봅니다.</p>
-<div id="423c8c2c" class="cell" data-execution_count="7">
+<div id="1a703c83" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab(수용자[<span class="st">"직업훈련"</span>], 수용자[<span class="st">"징벌여부"</span>], margins<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -726,7 +726,7 @@ window.Quarto = {
 </div>
 </div>
 <p>행마다의 비율로 보려면 <code>normalize="index"</code>를 씁니다.</p>
-<div id="70547c41" class="cell" data-execution_count="8">
+<div id="014d397b" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab(수용자[<span class="st">"직업훈련"</span>], 수용자[<span class="st">"징벌여부"</span>], normalize<span class="op">=</span><span class="st">"index"</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
@@ -766,7 +766,7 @@ window.Quarto = {
 <section id="두-집단-평균-비교-t-검정" class="level2">
 <h2 class="anchored" data-anchor-id="두-집단-평균-비교-t-검정">4.4 두 집단 평균 비교 (t-검정)</h2>
 <p>직업훈련 참여자와 비참여자의 평균 징벌횟수를 비교합니다.</p>
-<div id="7befa68a" class="cell" data-execution_count="9">
+<div id="03b9a0c3" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>참여 <span class="op">=</span> 수용자[수용자[<span class="st">"직업훈련"</span>] <span class="op">==</span> <span class="st">"Y"</span>][<span class="st">"징벌횟수"</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>비참여 <span class="op">=</span> 수용자[수용자[<span class="st">"직업훈련"</span>] <span class="op">==</span> <span class="st">"N"</span>][<span class="st">"징벌횟수"</span>]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -843,7 +843,7 @@ t = \frac{\bar{x}_{\text{참여}} - \bar{x}_{\text{비참여}}}{\sqrt{\dfrac{s_{
 <section id="먼저-그려-보기" class="level3">
 <h3 class="anchored" data-anchor-id="먼저-그려-보기">먼저 그려 보기</h3>
 <p>3장 3.4절에서 그린 산점도를 다시 그립니다.</p>
-<div id="07f811c6" class="cell" data-execution_count="10">
+<div id="93f240bf" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(수용자[<span class="st">"상담횟수"</span>], 수용자[<span class="st">"징벌횟수"</span>])</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"상담횟수와 징벌횟수"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"상담횟수"</span>)</span>
@@ -896,7 +896,7 @@ t = \frac{\bar{x}_{\text{참여}} - \bar{x}_{\text{비참여}}}{\sqrt{\dfrac{s_{
 </section>
 <section id="실행과-결과표" class="level3">
 <h3 class="anchored" data-anchor-id="실행과-결과표">실행과 결과표</h3>
-<div id="ac5cdf8d" class="cell" data-execution_count="11">
+<div id="f9e1f08d" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>모형<span class="dv">1</span> <span class="op">=</span> smf.ols(<span class="st">"징벌횟수 ~ 상담횟수"</span>, data<span class="op">=</span>수용자).fit()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(모형<span class="fl">1.</span><span class="er">summary</span>())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -906,7 +906,7 @@ Dep. Variable:                   징벌횟수   R-squared:                      
 Model:                            OLS   Adj. R-squared:                  0.818
 Method:                 Least Squares   F-statistic:                     37.06
 Date:                Wed, 11 Nov 2026   Prob (F-statistic):           0.000497
-Time:                        22:11:25   Log-Likelihood:                -4.9663
+Time:                        22:47:13   Log-Likelihood:                -4.9663
 No. Observations:                   9   AIC:                             13.93
 Df Residuals:                       7   BIC:                             14.33
 Df Model:                           1                                         
@@ -970,7 +970,7 @@ Notes:
 </tbody>
 </table>
 <p>관측치 수가 10이 아니라 9입니다. 상담횟수가 비어 있는 1007번이 자동으로 빠졌기 때문입니다. 계수만 따로 꺼낼 수도 있습니다.</p>
-<div id="0cb07ff2" class="cell" data-execution_count="12">
+<div id="fc268d23" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(모형<span class="fl">1.</span><span class="er">nobs</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(모형<span class="fl">1.</span><span class="er">params</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -990,7 +990,7 @@ dtype: float64</code></pre>
 <section id="회귀직선-그리기" class="level3">
 <h3 class="anchored" data-anchor-id="회귀직선-그리기">회귀직선 그리기</h3>
 <p>추정된 식을 산점도 위에 직선으로 겹쳐 그립니다. 직선은 두 점만 있으면 그릴 수 있으므로, 상담 0회와 8회일 때의 예측값을 계산해 두 점을 잇습니다.</p>
-<div id="be5711ea" class="cell" data-execution_count="13">
+<div id="05f41b05" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>b0 <span class="op">=</span> 모형<span class="fl">1.</span><span class="er">params</span>[<span class="st">"Intercept"</span>]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> 모형<span class="fl">1.</span><span class="er">params</span>[<span class="st">"상담횟수"</span>]</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1070,7 +1070,7 @@ dtype: float64</code></pre>
 &amp;= 0.67290
 \end{aligned}
 \]</span></p>
-<div id="f576c11f" class="cell" data-execution_count="14">
+<div id="2990910d" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b0 <span class="op">+</span> b1 <span class="op">*</span> <span class="dv">5</span>)       <span class="co"># 위에서 꺼내 둔 b0, b1을 그대로 씀</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.6728971962616828</code></pre>
@@ -1260,7 +1260,7 @@ b_0 &amp;= 1 - \left(-\frac{45}{107}\right) \times \frac{38}{9} = 1 + \frac{190}
 </div>
 </div>
 <p>공식을 pandas로 그대로 계산해 결과표의 계수와 비교해 봅니다.</p>
-<div id="586d6c1a" class="cell" data-execution_count="15">
+<div id="8e8801ca" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>자료 <span class="op">=</span> 수용자.dropna()          <span class="co"># 빈칸이 있는 1007번을 뺀 9명</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> 자료[<span class="st">"상담횟수"</span>]</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> 자료[<span class="st">"징벌횟수"</span>]</span>
@@ -1290,7 +1290,7 @@ R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2} = 1 - \frac{\t
 <section id="먼저-그려-보기-1" class="level3">
 <h3 class="anchored" data-anchor-id="먼저-그려-보기-1">먼저 그려 보기</h3>
 <p>나이와 징벌여부(받았으면 1, 아니면 0)를 산점도로 그립니다.</p>
-<div id="5100e64a" class="cell" data-execution_count="16">
+<div id="e11d2b8e" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(수용자[<span class="st">"나이"</span>], 수용자[<span class="st">"징벌여부"</span>])</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.yticks([<span class="dv">0</span>, <span class="dv">1</span>])</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"나이와 징벌여부"</span>)</span>
@@ -1407,7 +1407,7 @@ p &amp;= \frac{1}{1 + e^{-\eta}} \\
 <p>로지스틱 회귀의 <code>.fit()</code>은 계산 과정을 몇 줄 출력합니다. 오류가 아니라 계산이 끝났다는 안내입니다. 보이지 않게 하려면 <code>.fit(disp=0)</code>을 씁니다.</p>
 </div>
 </div>
-<div id="9ee5a7f1" class="cell" data-execution_count="17">
+<div id="aa8d71a8" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>모형<span class="dv">2</span> <span class="op">=</span> smf.logit(<span class="st">"징벌여부 ~ 나이"</span>, data<span class="op">=</span>수용자).fit()</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(모형<span class="fl">2.</span><span class="er">summary</span>())</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1420,7 +1420,7 @@ Dep. Variable:                   징벌여부   No. Observations:               
 Model:                          Logit   Df Residuals:                        8
 Method:                           MLE   Df Model:                            1
 Date:                Wed, 11 Nov 2026   Pseudo R-squ.:                  0.4030
-Time:                        22:11:26   Log-Likelihood:                -4.0180
+Time:                        22:47:14   Log-Likelihood:                -4.0180
 converged:                       True   LL-Null:                       -6.7301
 Covariance Type:            nonrobust   LLR p-value:                   0.01986
 ==============================================================================
@@ -1446,7 +1446,7 @@ Intercept      7.6907      4.437      1.733      0.083      -1.005      16.387
 \hat{p} &amp;= \frac{1}{1 + e^{1.85477}} = \frac{1}{1 + 6.39030} \approx 0.135
 \end{aligned}
 \]</span></p>
-<div id="dc7ad029" class="cell" data-execution_count="18">
+<div id="f4ef4dc6" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>b0 <span class="op">=</span> 모형<span class="fl">2.</span><span class="er">params</span>[<span class="st">"Intercept"</span>]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> 모형<span class="fl">2.</span><span class="er">params</span>[<span class="st">"나이"</span>]</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> 나이 <span class="kw">in</span> [<span class="dv">30</span>, <span class="dv">50</span>]:</span>
@@ -1479,7 +1479,7 @@ Intercept      7.6907      4.437      1.733      0.083      -1.005      16.387
 \end{aligned}
 \]</span></p>
 <p>나이가 식에서 지워지므로, 몇 살이든 1세 많아질 때마다 오즈가 0.826배가 됩니다. 파이썬에서는 계수 전체에 <code>np.exp</code>를 씌워 한 번에 계산합니다.</p>
-<div id="f7344f55" class="cell" data-execution_count="19">
+<div id="5b4bf33d" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>np.exp(모형<span class="fl">2.</span><span class="er">params</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>Intercept    2187.952308
@@ -1594,7 +1594,7 @@ dtype: float64</code></pre>
 <section id="결과를-믿으면-안-되는-경우" class="level2">
 <h2 class="anchored" data-anchor-id="결과를-믿으면-안-되는-경우">4.7 결과를 믿으면 안 되는 경우</h2>
 <p>이번에는 직업훈련 참여 여부로 징벌여부를 설명해 봅니다.</p>
-<div id="86d29bef" class="cell" data-execution_count="20">
+<div id="9cb608cf" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>모형<span class="dv">3</span> <span class="op">=</span> smf.logit(<span class="st">"징벌여부 ~ 직업훈련"</span>, data<span class="op">=</span>수용자).fit()</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(모형<span class="fl">3.</span><span class="er">params</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(모형<span class="fl">3.</span><span class="er">bse</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1652,7 +1652,7 @@ D_i = \begin{cases} 1 &amp; \text{직업훈련 Y} \\ 0 &amp; \text{직업훈련 
 </tbody>
 </table>
 <p>N 집단에 맞추려면 <span class="math inline">\(\beta_0\)</span>이 끝없이 커져야 하므로, 계산은 적당한 곳에서 멈추고 큰 값을 내놓습니다. 그 값은 statsmodels 버전에 따라 달라집니다. 반면 Y 집단의 <span class="math inline">\(\beta_0 + \beta_1\)</span>은 제대로 맞춰져 있습니다.</p>
-<div id="f268ea57" class="cell" data-execution_count="21">
+<div id="96a9cbd5" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(모형<span class="fl">3.</span><span class="er">params</span>.<span class="bu">sum</span>())     <span class="co"># b0 + b1</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.log(<span class="fl">0.2</span> <span class="op">/</span> <span class="fl">0.8</span>))</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1667,14 +1667,14 @@ D_i = \begin{cases} 1 &amp; \text{직업훈련 Y} \\ 0 &amp; \text{직업훈련 
 <ol type="1">
 <li>시설별 나이의 평균과 표준편차를 구하세요.</li>
 </ol>
-<div id="e1ef4272" class="cell" data-execution_count="22">
+<div id="ddc24ff3" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="0cdb8067" class="cell" data-execution_count="23">
+<div id="40ba19d7" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>수용자.groupby(<span class="st">"시설"</span>)[<span class="st">"나이"</span>].agg([<span class="st">"mean"</span>, <span class="st">"std"</span>]).<span class="bu">round</span>(<span class="dv">1</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
@@ -1719,14 +1719,14 @@ D_i = \begin{cases} 1 &amp; \text{직업훈련 Y} \\ 0 &amp; \text{직업훈련 
 <ol start="2" type="1">
 <li>징벌횟수를 나이로 설명하는 선형회귀를 실행하고 나이의 계수를 확인하세요.</li>
 </ol>
-<div id="b9e1525b" class="cell" data-execution_count="24">
+<div id="d8f2f138" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="c3a08724" class="cell" data-execution_count="25">
+<div id="5c33d440" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>모형 <span class="op">=</span> smf.ols(<span class="st">"징벌횟수 ~ 나이"</span>, data<span class="op">=</span>수용자).fit()</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(모형.params)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
