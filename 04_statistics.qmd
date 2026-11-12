@@ -203,6 +203,10 @@ $\beta_0$, $\beta_1$은 모르는 값이고, 데이터로 추정한 값은 $b_0$
 print(모형1.summary())
 ```
 
+::: {.callout-note title="결과표 위에 kurtosistest 경고가 나오면"}
+Colab에서는 결과표 위에 `kurtosistest p-value may be inaccurate with fewer than 20 observations` 같은 경고가 나올 수 있습니다. 결과표 맨 아래 칸(Omnibus 등)에 쓰이는 정규성 검정이 20명보다 적은 자료에서는 정확하지 않을 수 있다는 안내입니다. 오류가 아니고, 위쪽의 계수와 p값에는 영향이 없습니다.
+:::
+
 결과표에서 볼 곳은 다음과 같습니다.
 
 | 위치 | 기호 | 뜻 |

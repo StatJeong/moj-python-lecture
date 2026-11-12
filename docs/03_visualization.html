@@ -306,11 +306,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="준비" class="level2">
 <h2 class="anchored" data-anchor-id="준비">3.1 준비</h2>
 <p>Colab의 기본 설정에서는 그래프의 한글이 네모로 깨집니다. 먼저 나눔고딕 글꼴을 설치합니다. 노트북을 열 때마다 한 번 실행하면 됩니다.</p>
-<div id="6c480400" class="cell" data-execution_count="1">
+<div id="7a745f9a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>apt<span class="op">-</span>get <span class="op">-</span>qq install <span class="op">-</span>y fonts<span class="op">-</span>nanum <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>설치한 글꼴을 그래프에 쓰도록 설정하고 데이터를 읽습니다.</p>
-<div id="c3978373" class="cell" data-execution_count="2">
+<div id="65adbae4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> font_manager <span class="im">as</span> fm</span>
@@ -425,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>코드 한 줄마다 그래프에 층이 하나씩 쌓이는 과정</figcaption>
 </figure>
 </div>
-<div id="66939297" class="cell" data-execution_count="3">
+<div id="6731dbdd" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>죄명별 <span class="op">=</span> 수용자[<span class="st">"죄명"</span>].value_counts()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))                                  <span class="co"># 1. 빈 그림판</span></span>
@@ -529,7 +529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="칸-여러-개-그리기" class="level3">
 <h3 class="anchored" data-anchor-id="칸-여러-개-그리기">칸 여러 개 그리기</h3>
-<div id="eb9b513b" class="cell" data-execution_count="4">
+<div id="021917f8" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))   <span class="co"># 그림판 하나에 칸 두 개 (1행 2열)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].bar(죄명별.index, 죄명별.values)           <span class="co"># 왼쪽 칸</span></span>
@@ -593,7 +593,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="막대그래프-죄명별-인원" class="level2">
 <h2 class="anchored" data-anchor-id="막대그래프-죄명별-인원">3.3 막대그래프: 죄명별 인원</h2>
 <p>먼저 그릴 값을 만듭니다.</p>
-<div id="f604d21d" class="cell" data-execution_count="5">
+<div id="581ad7bd" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>죄명별 <span class="op">=</span> 수용자[<span class="st">"죄명"</span>].value_counts()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>죄명별</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -606,7 +606,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="d62b8ece" class="cell" data-execution_count="6">
+<div id="fb14efd8" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.bar(죄명별.index, 죄명별.values)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"죄명별 수용자 수"</span>)</span>
@@ -677,7 +677,7 @@ Name: count, dtype: int64</code></pre>
 <section id="산점도-상담횟수와-징벌횟수" class="level2">
 <h2 class="anchored" data-anchor-id="산점도-상담횟수와-징벌횟수">3.4 산점도: 상담횟수와 징벌횟수</h2>
 <p>숫자 두 개의 관계를 볼 때는 산점도를 씁니다.</p>
-<div id="5a00c0c1" class="cell" data-execution_count="7">
+<div id="de3a85d7" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(수용자[<span class="st">"상담횟수"</span>], 수용자[<span class="st">"징벌횟수"</span>])</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"상담횟수와 징벌횟수"</span>)</span>
@@ -708,7 +708,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="시설별-수용률" class="level2">
 <h2 class="anchored" data-anchor-id="시설별-수용률">3.5 시설별 수용률</h2>
-<div id="6feb4640" class="cell" data-execution_count="8">
+<div id="3089bc97" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>시설현황[<span class="st">"수용률"</span>] <span class="op">=</span> (시설현황[<span class="st">"현원"</span>] <span class="op">/</span> 시설현황[<span class="st">"정원"</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
@@ -729,7 +729,7 @@ Name: count, dtype: int64</code></pre>
 <section id="집계-결과를-바로-그리기" class="level2">
 <h2 class="anchored" data-anchor-id="집계-결과를-바로-그리기">3.6 집계 결과를 바로 그리기</h2>
 <p><code>groupby()</code>로 집계한 결과에 <code>.plot()</code>을 붙이면 바로 그래프가 됩니다.</p>
-<div id="7da8df93" class="cell" data-execution_count="9">
+<div id="97e88705" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>시설별징벌 <span class="op">=</span> 수용자.groupby(<span class="st">"시설"</span>)[<span class="st">"징벌횟수"</span>].<span class="bu">sum</span>()</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>시설별징벌.plot(kind<span class="op">=</span><span class="st">"bar"</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), rot<span class="op">=</span><span class="dv">0</span>, title<span class="op">=</span><span class="st">"시설별 징벌횟수 합계"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"징벌횟수"</span>)</span>
@@ -746,7 +746,7 @@ Name: count, dtype: int64</code></pre>
 <section id="seaborn-표를-색으로-칠하는-히트맵" class="level2">
 <h2 class="anchored" data-anchor-id="seaborn-표를-색으로-칠하는-히트맵">3.7 seaborn: 표를 색으로 칠하는 히트맵</h2>
 <p>seaborn은 matplotlib 위에서 동작하는 그래프 도구입니다. 표(DataFrame)를 넘겨주면 색 구분, 범례 같은 것을 알아서 그려 줍니다. Colab에는 이미 설치되어 있습니다. 이 강의에서는 표 전체를 색으로 칠하는 히트맵을 씁니다(6장에서도 씀).</p>
-<div id="a6add6d8" class="cell" data-execution_count="10">
+<div id="5113ed8a" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>, font<span class="op">=</span><span class="st">"NanumGothic"</span>, rc<span class="op">=</span>{<span class="st">"axes.unicode_minus"</span>: <span class="va">False</span>})</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
@@ -797,7 +797,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="상관계수-히트맵-heatmap" class="level3">
 <h3 class="anchored" data-anchor-id="상관계수-히트맵-heatmap">상관계수 히트맵: heatmap</h3>
-<div id="b2e59f51" class="cell" data-execution_count="11">
+<div id="458f744d" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>상관 <span class="op">=</span> 수용자[[<span class="st">"나이"</span>, <span class="st">"형기_개월"</span>, <span class="st">"상담횟수"</span>, <span class="st">"징벌횟수"</span>]].corr().<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
@@ -848,7 +848,7 @@ Name: count, dtype: int64</code></pre>
 <section id="그래프-저장하기" class="level2">
 <h2 class="anchored" data-anchor-id="그래프-저장하기">3.8 그래프 저장하기</h2>
 <p><code>plt.show()</code> 앞에 <code>plt.savefig()</code>를 넣으면 그림 파일로 저장됩니다. 보고서에 넣을 때는 <code>dpi</code>를 150 이상으로 합니다.</p>
-<div id="2b3f4f18" class="cell" data-execution_count="12">
+<div id="aaaaa3e5" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.bar(죄명별.index, 죄명별.values)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"죄명별 수용자 수"</span>)</span>
@@ -894,14 +894,14 @@ Name: count, dtype: int64</code></pre>
 <ol type="1">
 <li>경비처우급별 인원을 막대그래프로 그리세요.</li>
 </ol>
-<div id="b7fc1b7e" class="cell" data-execution_count="13">
+<div id="583ef7a4" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="96a1335d" class="cell" data-execution_count="14">
+<div id="279fe1af" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>처우급별 <span class="op">=</span> 수용자[<span class="st">"경비처우급"</span>].value_counts().sort_index()</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.bar(처우급별.index, 처우급별.values)</span>
@@ -920,14 +920,14 @@ Name: count, dtype: int64</code></pre>
 <ol start="2" type="1">
 <li>나이와 형기_개월의 관계를 산점도로 그리세요.</li>
 </ol>
-<div id="5c4dc131" class="cell" data-execution_count="15">
+<div id="eec47b96" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 여기에 코드를 작성해 보세요</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <details>
 <summary>
 정답 보기
 </summary>
-<div id="f8f637ff" class="cell" data-execution_count="16">
+<div id="9907a468" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(수용자[<span class="st">"나이"</span>], 수용자[<span class="st">"형기_개월"</span>])</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"나이와 형기"</span>)</span>
